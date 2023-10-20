@@ -1,0 +1,176 @@
+<pre class="metadata">
+Title: Solid-PREP
+Favicon: https://www.w3.org/2008/site/images/star.png
+Shortname: PREP
+Level: 1
+Status: w3c/ED
+ED: https://cxres.github.io/solid-prep/protocol
+Repository: cxres/solid-prep
+Inline Github Issues: title
+Markup Shorthands: markdown yes, biblio yes, css no
+Boilerplate: issues-index no, conformance no, index no, logo no
+Local Boilerplate: copyright yes
+Block Elements: prep-html-tabs
+Text Macro: SUPER <span class="super">Per Resource Events Protocol</span>
+  PREP <span class="super-short">PREP</span>
+  PROTOCOL <span class="title">Solid-PREP</span>
+Max ToC Depth: 2
+Indent: 2
+Editor: Rahul Gupta, https://cxres.pages.dev/profile/#i
+!Author: <a href="https://cxres.pages.dev/profile/#i">Rahul Gupta</a>
+Abstract:
+  Solid-PREP defines representation and semantics for notifications sent from LDP Resources hosted on Solid PODS using the Per Resource Events Protocol.
+
+Status Text:
+  This section describes the status of this document at the time of its publication.
+
+  The information in this document is still subject to change. You are invited to contribute any feedback, comments, or questions you might have.
+
+  This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+</pre>
+
+<style>
+  body {
+    counter-reset: tables;
+    background-image: none;
+  }
+
+  .v-space {
+    padding: 4px;
+  }
+
+  .example > span.marker {
+    text-transform: none;
+  }
+
+  prep-http-tabs pre.include-code {
+    margin: 0;
+    padding: 0.5em 1em 0.25em;
+  }
+
+  table {
+    width: 90%;
+    border: 6px double black;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0 4px;
+  }
+
+  table.auto {
+    width: 100%;
+    table-layout: auto;
+  }
+
+  table.numbered {
+    counter-increment: tables;
+  }
+
+  table > caption {
+    padding-bottom: 8px;
+  }
+
+  table.numbered > caption::before {
+    content: "Table " counter(tables) ": ";
+    font-weight: 700;
+    padding: 2px 0;
+  }
+
+  th, td {
+    border: 2px solid;
+    padding: 4px 8px;
+    vertical-align: top;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    table {
+      border-color: white;
+    }
+  }
+</style>
+
+<pre class="include">
+  path: boilerplate/conformance.md
+</pre>
+
+<pre class="include">
+  path: sections/conformance.md
+</pre>
+
+<pre class="include">
+  path: sections/introduction.md
+</pre>
+
+<pre class="include">
+  path: sections/request.md
+</pre>
+
+<pre class="include">
+  path: sections/format.md
+</pre>
+
+<pre class="include">
+  path: sections/triggers.md
+</pre>
+
+<pre class="include">
+  path: sections/data-model.md
+</pre>
+
+<pre class="include">
+  path: sections/activity-mapping.md
+</pre>
+
+<!--
+  <pre class="include">
+    path: sections/delta.md
+  </pre>
+-->
+
+<pre class="include">
+  path: boilerplate/considerations.md
+</pre>
+
+
+<pre class="biblio">
+{
+  "SOLID": {
+    "note": "Work in Progress",
+    "authors": [
+      "Sarven Capadisli, Ed.",
+      "Tim Berners-Lee, Ed.",
+      "Ruben Verborgh, Ed.",
+      "Kjetil Kjernsmo Ed."
+    ],
+    "href": "https://solidproject.org/TR/protocol",
+    "edDraft": "https://solidproject.org/ED/protocol",
+    "title": "Solid Protocol",
+    "status": "Editor's Draft",
+    "publisher": "Solid Community Group"
+  },
+  "SOLID-NOTIFICATIONS": {
+    "note": "Work in Progress",
+    "authors": [
+      "Aaron Coburn",
+      "Sarven Capadisli",
+      "elf Pavlik",
+      "Rahul Gupta"
+    ],
+    "href": "https://solidproject.org/TR/notifications-protocol",
+    "edDraft": "https://solid.github.io/notifications/protocol",
+    "title": "Solid Notifications Protocol",
+    "status": "Editor's Draft",
+    "publisher": "Solid Community Group"
+  },
+  "PREP": {
+    "note": "Work in Progress",
+    "authors": [
+      "Rahul Gupta"
+    ],
+    "href": "https://datatracker.ietf.org/doc/html/draft-gupta-httpbis-per-resource-events",
+    "edDraft": "https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html",
+    "title": "Per Resource Events",
+    "status": "Internet Draft",
+    "publisher": "IETF"
+  }
+}
+</pre>
