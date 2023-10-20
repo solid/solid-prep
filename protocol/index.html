@@ -1,0 +1,1187 @@
+<!doctype html><html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Solid-PREP</title>
+  <meta content="w3c/ED" name="w3c-status">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
+  <link href="https://cxres.github.io/solid-prep/protocol" rel="canonical">
+  <link href="https://www.w3.org/2008/site/images/star.png" rel="icon">
+  <meta content="49cd9908bcd898ac102d1be3511e4852cff2d36f" name="document-revision">
+<style>
+  body {
+    counter-reset: tables;
+    background-image: none;
+  }
+
+  .v-space {
+    padding: 4px;
+  }
+
+  .example > span.marker {
+    text-transform: none;
+  }
+
+  prep-http-tabs pre.include-code {
+    margin: 0;
+    padding: 0.5em 1em 0.25em;
+  }
+
+  table {
+    width: 90%;
+    border: 6px double black;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0 4px;
+  }
+
+  table.auto {
+    width: 100%;
+    table-layout: auto;
+  }
+
+  table.numbered {
+    counter-increment: tables;
+  }
+
+  table > caption {
+    padding-bottom: 8px;
+  }
+
+  table.numbered > caption::before {
+    content: "Table " counter(tables) ": ";
+    font-weight: 700;
+    padding: 2px 0;
+  }
+
+  th, td {
+    border: 2px solid;
+    padding: 4px 8px;
+    vertical-align: top;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    table {
+      border-color: white;
+    }
+  }
+</style>
+<style>/* Boilerplate: style-autolinks */
+.css.css, .property.property, .descriptor.descriptor {
+    color: var(--a-normal-text);
+    font-size: inherit;
+    font-family: inherit;
+}
+.css::before, .property::before, .descriptor::before {
+    content: "‘";
+}
+.css::after, .property::after, .descriptor::after {
+    content: "’";
+}
+.property, .descriptor {
+    /* Don't wrap property and descriptor names */
+    white-space: nowrap;
+}
+.type { /* CSS value <type> */
+    font-style: italic;
+}
+pre .property::before, pre .property::after {
+    content: "";
+}
+[data-link-type="property"]::before,
+[data-link-type="propdesc"]::before,
+[data-link-type="descriptor"]::before,
+[data-link-type="value"]::before,
+[data-link-type="function"]::before,
+[data-link-type="at-rule"]::before,
+[data-link-type="selector"]::before,
+[data-link-type="maybe"]::before {
+    content: "‘";
+}
+[data-link-type="property"]::after,
+[data-link-type="propdesc"]::after,
+[data-link-type="descriptor"]::after,
+[data-link-type="value"]::after,
+[data-link-type="function"]::after,
+[data-link-type="at-rule"]::after,
+[data-link-type="selector"]::after,
+[data-link-type="maybe"]::after {
+    content: "’";
+}
+
+[data-link-type].production::before,
+[data-link-type].production::after,
+.prod [data-link-type]::before,
+.prod [data-link-type]::after {
+    content: "";
+}
+
+[data-link-type=element],
+[data-link-type=element-attr] {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: .9em;
+}
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
+
+[data-link-type=biblio] {
+    white-space: pre;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
+
+/* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
+:root {
+    color-scheme: light dark;
+
+    --text: black;
+    --bg: white;
+
+    --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2016/logos/UD-watermark);
+
+    --logo-bg: #1a5e9a;
+    --logo-active-bg: #c00;
+    --logo-text: white;
+
+    --tocnav-normal-text: #707070;
+    --tocnav-normal-bg: var(--bg);
+    --tocnav-hover-text: var(--tocnav-normal-text);
+    --tocnav-hover-bg: #f8f8f8;
+    --tocnav-active-text: #c00;
+    --tocnav-active-bg: var(--tocnav-normal-bg);
+
+    --tocsidebar-text: var(--text);
+    --tocsidebar-bg: #f7f8f9;
+    --tocsidebar-shadow: rgba(0,0,0,.1);
+    --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+    --toclink-text: var(--text);
+    --toclink-underline: #3980b5;
+    --toclink-visited-text: var(--toclink-text);
+    --toclink-visited-underline: #054572;
+
+    --heading-text: #005a9c;
+
+    --hr-text: var(--text);
+
+    --algo-border: #def;
+
+    --del-text: red;
+    --del-bg: transparent;
+    --ins-text: #080;
+    --ins-bg: transparent;
+
+    --a-normal-text: #034575;
+    --a-normal-underline: #bbb;
+    --a-visited-text: var(--a-normal-text);
+    --a-visited-underline: #707070;
+    --a-hover-bg: rgba(75%, 75%, 75%, .25);
+    --a-active-text: #c00;
+    --a-active-underline: #c00;
+
+    --blockquote-border: silver;
+    --blockquote-bg: transparent;
+    --blockquote-text: currentcolor;
+
+    --issue-border: #e05252;
+    --issue-bg: #fbe9e9;
+    --issue-text: var(--text);
+    --issueheading-text: #831616;
+
+    --example-border: #e0cb52;
+    --example-bg: #fcfaee;
+    --example-text: var(--text);
+    --exampleheading-text: #574b0f;
+
+    --note-border: #52e052;
+    --note-bg: #e9fbe9;
+    --note-text: var(--text);
+    --noteheading-text: hsl(120, 70%, 30%);
+    --notesummary-underline: silver;
+
+    --assertion-border: #aaa;
+    --assertion-bg: #eee;
+    --assertion-text: black;
+
+    --advisement-border: orange;
+    --advisement-bg: #fec;
+    --advisement-text: var(--text);
+    --advisementheading-text: #b35f00;
+
+    --warning-border: red;
+    --warning-bg: hsla(40,100%,50%,0.95);
+    --warning-text: var(--text);
+
+    --amendment-border: #330099;
+    --amendment-bg: #F5F0FF;
+    --amendment-text: var(--text);
+    --amendmentheading-text: #220066;
+
+    --def-border: #8ccbf2;
+    --def-bg: #def;
+    --def-text: var(--text);
+    --defrow-border: #bbd7e9;
+
+    --datacell-border: silver;
+
+    --indexinfo-text: #707070;
+
+    --indextable-hover-text: black;
+    --indextable-hover-bg: #f7f8f9;
+
+    --outdatedspec-bg: rgba(0, 0, 0, .5);
+    --outdatedspec-text: black;
+    --outdated-bg: maroon;
+    --outdated-text: white;
+    --outdated-shadow: red;
+
+    --editedrec-bg: darkorange;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+ <body class="h-entry">
+  <div class="head">
+   <h1 class="p-name no-ref" id="title">Solid-PREP</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-20">20 October 2023</time></p>
+   <details open>
+    <summary>More details about this document</summary>
+    <div data-fill-with="spec-metadata">
+     <dl>
+      <dt>This version:
+      <dd><a class="u-url" href="https://cxres.github.io/solid-prep/protocol">https://cxres.github.io/solid-prep/protocol</a>
+      <dt>Issue Tracking:
+      <dd><a href="https://github.com/cxres/solid-prep/issues/">GitHub</a>
+      <dt class="editor">Editor:
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://cxres.pages.dev/profile/#i">Rahul Gupta</a>
+      <dt>Author:
+      <dd><a href="https://cxres.pages.dev/profile/#i">Rahul Gupta</a>
+     </dl>
+    </div>
+   </details>
+   <div data-fill-with="warning"></div>
+   <p class="copyright" data-fill-with="copyright">Copyright © 2023, Solid-PREP Contributors </p>
+   <hr title="Separator for header">
+  </div>
+  <div class="p-summary" data-fill-with="abstract">
+   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <p>Solid-PREP defines representation and semantics for notifications sent from LDP Resources hosted on Solid PODS using the Per Resource Events Protocol.</p>
+  </div>
+  <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
+  <div data-fill-with="status">
+   <p></p>
+   <p>This section describes the status of this document at the time of its publication.</p>
+   <p>The information in this document is still subject to change. You are invited to contribute any feedback, comments, or questions you might have.</p>
+   <p>This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
+  </div>
+  <div data-fill-with="at-risk"></div>
+  <nav data-fill-with="table-of-contents" id="toc">
+   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
+   <ol class="toc" role="directory">
+    <li>
+     <a href="#conformance"><span class="secno"></span> <span class="content"> Conformance </span></a>
+     <ol class="toc">
+      <li><a href="#document-conventions"><span class="secno"></span> <span class="content">Document Conventions</span></a>
+      <li><a href="#specification-category"><span class="secno"></span> <span class="content">Specification Category</span></a>
+      <li><a href="#classes-of-products"><span class="secno"></span> <span class="content">Classes of Products</span></a>
+      <li><a href="#interoperability"><span class="secno"></span> <span class="content">Interoperability</span></a>
+      <li><a href="#namespaces"><span class="secno"></span> <span class="content">Namespaces</span></a>
+     </ol>
+    <li>
+     <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+     <ol class="toc">
+      <li><a href="#intended-audience"><span class="secno">1.1</span> <span class="content">Audience</span></a>
+     </ol>
+    <li><a href="#request"><span class="secno">2</span> <span class="content">Request</span></a>
+    <li><a href="#format"><span class="secno">3</span> <span class="content">Format</span></a>
+    <li>
+     <a href="#triggers"><span class="secno">4</span> <span class="content">Triggers</span></a>
+     <ol class="toc">
+      <li><a href="#triggers-resource-and-their-containers"><span class="secno">4.1</span> <span class="content">Resources and their Containers</span></a>
+      <li><a href="#triggers-resources-only"><span class="secno">4.2</span> <span class="content">Resources only</span></a>
+      <li><a href="#trigger-timing"><span class="secno">4.3</span> <span class="content">Don’t Jump the Gun</span></a>
+     </ol>
+    <li>
+     <a href="#data-model"><span class="secno">5</span> <span class="content">Data Model</span></a>
+     <ol class="toc">
+      <li><a href="#notification-properties"><span class="secno">5.1</span> <span class="content">Properties</span></a>
+      <li><a href="#extended-content"><span class="secno">5.2</span> <span class="content">Extended Content</span></a>
+     </ol>
+    <li>
+     <a href="#activity-mapping"><span class="secno">6</span> <span class="content">Activity Mapping</span></a>
+     <ol class="toc">
+      <li><a href="#activity-mapping-ldp-resource"><span class="secno">6.1</span> <span class="content">LDP Resource</span></a>
+      <li><a href="#activity-mapping-existing-resource-ldp-container"><span class="secno">6.2</span> <span class="content">Existing Resource in LDP Container</span></a>
+      <li><a href="#activity-mapping-new-resource-ldp-container"><span class="secno">6.3</span> <span class="content">New Resource in LDP Container</span></a>
+     </ol>
+    <li>
+     <a href="#considerations"><span class="secno"></span> <span class="content"> Considerations </span></a>
+     <ol class="toc">
+      <li><a href="#security-considerations"><span class="secno"></span> <span class="content">Security Considerations</span></a>
+     </ol>
+    <li>
+     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
+     <ol class="toc">
+      <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
+     </ol>
+   </ol>
+  </nav>
+  <main>
+   <h2 class="no-num heading settled" id="conformance"><span class="content"> Conformance </span></h2>
+   <h3 class="heading settled" id="document-conventions"><span class="content">Document Conventions</span></h3>
+   <p>All of the text of this specification is normative except assertions, diagrams, examples, notes and sections explicitly marked as non-normative as described in <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>.</p>
+   <p>The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT" and "MAY" in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> <a data-link-type="biblio" href="#biblio-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">[RFC8174]</a> when, and only when, they
+appear in all capitals, as shown here.</p>
+   <p>The above-mentioned key words are used exclusively in the normative parts of this document and appear only in all capitals.</p>
+   <h3 class="heading settled" id="specification-category"><span class="content">Specification Category</span></h3>
+   <p>The <span class="title">Solid-PREP</span> identifies the following <a href="https://www.w3.org/TR/spec-variability/#spec-cat">Specification Category</a> to distinguish the types of conformance:</p>
+   <ul>
+    <li data-md>
+     <p>API,</p>
+    <li data-md>
+     <p>Notation/syntax,</p>
+    <li data-md>
+     <p>Set of events,</p>
+    <li data-md>
+     <p>Protocol.</p>
+   </ul>
+   <h3 class="heading settled" id="classes-of-products"><span class="content">Classes of Products</span></h3>
+   <p>The <span class="title">Solid-PREP</span> identifies the following Classes of Products for conforming implementations. These products are referenced throughout this specification.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="solid-server">Solid Server</dfn>
+    <dd data-md>
+     <p>A <em>Solid server</em> that builds on a <a href="https://solidproject.org/ED/protocol#server">server</a> <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> and <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#resource-server">resource server</a> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> by defining the behaviour of resources.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="solid-client">Solid Client</dfn>
+    <dd data-md>
+     <p>A <em>Solid client</em> that builds on a <a href="https://solidproject.org/ED/protocol#client">client</a> <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> and <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#application-client">application client</a> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a>.</p>
+   </dl>
+   <h3 class="heading settled" id="interoperability"><span class="content">Interoperability</span></h3>
+   <p>Interoperability occurs between <a href="#Solid-client—Solid-server-interoperability" id="ref-for-Solid-client—Solid-server-interoperability">Solid Client—Solid Server</a> as defined by the <span class="title">Solid-PREP</span>.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="Solid-client—Solid-server-interoperability">Solid Client—Solid Server Interoperability</dfn>
+    <dd data-md>
+     <p>Interoperability of implementations for <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client">Solid clients</a> and <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server">Solid servers</a> is tested by evaluating an implementation’s ability to transmit and receive <span class="super-short">PREP</span> Notifications that conform to <span class="title">Solid-PREP</span>.</p>
+   </dl>
+   <h3 class="heading settled" id="namespaces"><span class="content">Namespaces</span></h3>
+   <p>This document uses the following RDF vocabularies and corresponding namespace prefix bindings:</p>
+   <table class="auto">
+    <caption> Prefixes and Namespaces </caption>
+    <thead>
+     <tr>
+      <th> Prefix 
+      <th> Namespace 
+      <th> Description 
+    <tbody>
+     <tr>
+      <td> <code>xs </code>
+      <td> <samp>http://www.w3.org/2001/XMLSchema# </samp>
+      <td> <a data-link-type="biblio" href="#biblio-xmlschema11-1" title="W3C XML Schema Definition Language (XSD) 1.1 Part 1: Structures">[XMLSCHEMA11-1]</a> 
+    <tbody>
+     <tr>
+      <td> <code>as </code>
+      <td> <samp>https://www.w3.org/ns/activitystreams# </samp>
+      <td> <a data-link-type="biblio" href="#biblio-activitystreams-vocabulary" title="Activity Vocabulary">[ACTIVITYSTREAMS-VOCABULARY]</a> 
+   </table>
+   <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
+   <p><em>This section is non-normative.</em></p>
+   <p>Solid <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> uses linked data to interconnect data across decentralized data stores called PODS. <span class="super">Per Resource Events Protocol</span> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> allows servers to transmit notifications over HTTP that can be customized for any given resource. This specification defines representation and semantics for <span class="super-short">PREP</span> notifications sent from linked data resources hosted on Solid PODS.</p>
+   <h3 class="heading settled" data-level="1.1" id="intended-audience"><span class="secno">1.1. </span><span class="content">Audience</span><a class="self-link" href="#intended-audience"></a></h3>
+   <p><em>This section is non-normative.</em></p>
+   <p>This specification is for:</p>
+   <ul>
+    <li data-md>
+     <p><a href="http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135">Server developers</a> who wish to enable clients to listen for updates to LDP Resources on Solid PODS.</p>
+    <li data-md>
+     <p><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who wish to implement a client to listen for updates to LDP Resources on Solid PODS.</p>
+   </ul>
+   <h2 class="heading settled" data-level="2" id="request"><span class="secno">2. </span><span class="content">Request</span><a class="self-link" href="#request"></a></h2>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST accept <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#request">requests</a> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> when the `accept` <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#event-field">event-field</a> associated with the `PREP` list item in the <code><a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#accept-events">Accept-Events</a></code> header field indicates a preferred media type of `application/ld+json` <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a>.</p>
+   <h2 class="heading settled" data-level="3" id="format"><span class="secno">3. </span><span class="content">Format</span><a class="self-link" href="#format"></a></h2>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server②">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST be able to transmit <span class="super-short">PREP</span> notifications using the `application/ld+json` <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> media type. It MAY also support other media types to transmit <span class="super-short">PREP</span> notifications.</p>
+   <h2 class="heading settled" data-level="4" id="triggers"><span class="secno">4. </span><span class="content">Triggers</span><a class="self-link" href="#triggers"></a></h2>
+   <p>The Solid Protocol <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> requires an LDP container’s state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server③">Solid server</a> to transmit <span class="super-short">PREP</span> notification not only on that resource but also on its container.</p>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server④">Solid server</a> implementing the <span class="super">Per Resource Events Protocol</span> on an LDP Resource SHOULD send a <span class="super-short">PREP</span> notification to a <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client①">Solid client</a> upon the following triggers:</p>
+   <h3 class="heading settled" data-level="4.1" id="triggers-resource-and-their-containers"><span class="secno">4.1. </span><span class="content">Resources and their Containers</span><a class="self-link" href="#triggers-resource-and-their-containers"></a></h3>
+   <p>When a request sent to the resource or a contained resource within it, with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a> generates a response with any of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15">HTTP status codes</a>:</p>
+   <table class="numbered">
+    <caption> Notification Triggers (Resources and their Containers) </caption>
+    <tbody>
+     <tr>
+      <th> Request Method 
+      <th> Response Status 
+     <tr>
+      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> <br> <code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code></code></code>
+      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> </code></code>
+   </table>
+   <h3 class="heading settled" data-level="4.2" id="triggers-resources-only"><span class="secno">4.2. </span><span class="content">Resources only</span><a class="self-link" href="#triggers-resources-only"></a></h3>
+   <p>When a request sent to the resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a> generates a response with any of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15">HTTP status codes</a>:</p>
+   <table class="numbered">
+    <caption> Notification Triggers (Resource only) </caption>
+    <tbody>
+     <tr>
+      <th> Request Method 
+      <th> Response Status 
+     <tr>
+      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> <br> </code>
+      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.2">201 (Created)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.6">205 (Reset Content)</a> </code></code></code></code>
+   </table>
+   <h3 class="heading settled" data-level="4.3" id="trigger-timing"><span class="secno">4.3. </span><span class="content">Don’t Jump the Gun</span><a class="self-link" href="#trigger-timing"></a></h3>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑤">Solid server</a> MUST NOT transmit a <span class="super-short">PREP</span> notification to a <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client②">Solid client</a> before a response has been sent to the user agent that initiated the request that triggered the said notification.</p>
+   <h2 class="heading settled" data-level="5" id="data-model"><span class="secno">5. </span><span class="content">Data Model</span><a class="self-link" href="#data-model"></a></h2>
+   <p>The core notification data is expressed with the Activity Streams <a data-link-type="biblio" href="#biblio-activitystreams-vocabulary" title="Activity Vocabulary">[ACTIVITYSTREAMS-VOCABULARY]</a> and <a href="https://www.w3.org/ns/solid/notifications">Solid Notifications</a> <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> vocabularies.</p>
+   <h3 class="heading settled" data-level="5.1" id="notification-properties"><span class="secno">5.1. </span><span class="content">Properties</span><a class="self-link" href="#notification-properties"></a></h3>
+   <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑥">Solid server</a> MUST have the following properties:</p>
+   <dl>
+    <dt id="notification-property-id"><a class="self-link" href="#notification-property-id"></a><code><em>id</em> &lt;xs:string></code> 
+    <dd> an opaque identifier for the notification. Can be used to set `Last-Event-ID` in a subsequent <span class="super-short">PREP</span> notifications request. 
+    <dt id="notification-property-type"><a class="self-link" href="#notification-property-type"></a><code><em>type</em> &lt;as:Activity></code> 
+    <dd> the specific <a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types">type of activity</a> that triggered the notification. <a href="#activity-mapping">§ 6 Activity Mapping</a> specifies how this property is set. 
+    <dt id="notification-property-published"><a class="self-link" href="#notification-property-published"></a><code><em>published</em> &lt;xs:dateTime></code> 
+    <dd> the date and time of the notification. 
+   </dl>
+   <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑦">Solid server</a> SHOULD have the following properties:</p>
+   <dl>
+    <dt id="notification-property-state"><a class="self-link" href="#notification-property-state"></a><code><em>state</em> &lt;xs:string></code> 
+    <dd> an opaque identifier for the last known state of the resource. 
+   </dl>
+   <h3 class="heading settled" data-level="5.2" id="extended-content"><span class="secno">5.2. </span><span class="content">Extended Content</span><a class="self-link" href="#extended-content"></a></h3>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑧">Solid server</a> MAY augment the <a href="https://w3c.github.io/json-ld-syntax/#the-context">JSON-LD Context</a> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> definition and extend the content of notifications.</p>
+   <p class="note" role="note"><span class="marker">NOTE:</span> See examples of <a href="https://w3c.github.io/activitystreams/core/#example-using-multiple-vocabularies">using multiple vocabularies</a> in the Activity Streams <a data-link-type="biblio" href="#biblio-activitystreams-core" title="Activity Streams 2.0">[ACTIVITYSTREAMS-CORE]</a> specification.</p>
+   <div class="advisement">
+    <div class="marker">Implementation Guidance</div>
+     <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client③">Solid clients</a> are encouraged to be aware that anything can be included in the notification. Clients might want to take suitable precautions when ascertaining the veracity of the contents. 
+   </div>
+   <h2 class="heading settled" data-level="6" id="activity-mapping"><span class="secno">6. </span><span class="content">Activity Mapping</span><a class="self-link" href="#activity-mapping"></a></h2>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑨">Solid server</a> implementing the <span class="title">Solid-PREP</span> on an LDP Resource MUST set the activity <a href="#notification-property-type">type</a> for a <span class="super-short">PREP</span> notification based on the triggering request as follows:</p>
+   <h3 class="heading settled" data-level="6.1" id="activity-mapping-ldp-resource"><span class="secno">6.1. </span><span class="content">LDP Resource</span><a class="self-link" href="#activity-mapping-ldp-resource"></a></h3>
+   <p>When the <span class="super-short">PREP</span> notification is triggered by a request on the resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
+   <table class="numbered">
+    <caption> Activity Mapping for LDP Resources </caption>
+    <thead>
+     <tr>
+      <th> Request Method 
+      <th> Activity Type 
+    <tbody>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> </code>
+      <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
+     <tr>
+      <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> </code>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code>
+      <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-delete">as:Delete</a> </code>
+   </table>
+   <h3 class="heading settled" data-level="6.2" id="activity-mapping-existing-resource-ldp-container"><span class="secno">6.2. </span><span class="content">Existing Resource in LDP Container</span><a class="self-link" href="#activity-mapping-existing-resource-ldp-container"></a></h3>
+   <p>When the <span class="super-short">PREP</span> notification is triggered by a request on a contained resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
+   <table class="numbered">
+    <caption> Activity Mapping for LDP Containers when contained resources change </caption>
+    <thead>
+     <tr>
+      <th> Request Method 
+      <th> Activity Type 
+    <tbody>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> </code>
+      <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
+     <tr>
+      <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> </code>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code>
+      <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-remove">as:Remove</a> </code>
+   </table>
+    <br> 
+   <h3 class="heading settled" data-level="6.3" id="activity-mapping-new-resource-ldp-container"><span class="secno">6.3. </span><span class="content">New Resource in LDP Container</span><a class="self-link" href="#activity-mapping-new-resource-ldp-container"></a></h3>
+   <p>When the <span class="super-short">PREP</span> notification is triggered by a request to create a new resource inside that container (resource) with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
+   <table class="numbered">
+    <caption> Activity Mapping for LDP Containers when contained resources are created </caption>
+    <thead>
+     <tr>
+      <th> Request Method 
+      <th> Activity Type 
+    <tbody>
+     <tr>
+      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> </code>
+      <td rowspan="2"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-add">as:Add</a> </code>
+     <tr>
+      <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
+   </table>
+   <h2 class="no-num heading settled" id="considerations"><span class="content"> Considerations </span><a class="self-link" href="#considerations"></a></h2>
+   <p><em>This section is non-normative.</em></p>
+   <p>This section details security and privacy considerations.</p>
+   <p>Some of the normative references within this specification point to documents with a Living Standard or Draft status, meaning their contents can still change over time. It is advised to monitor these documents, as such changes might have implications.</p>
+   <p>Since <span class="title">Solid-PREP</span> defines representation and semantics for the use of <span class="super">Per Resource Events Protocol</span> to transmit notifications from Solid resources, it follows that the <span class="title">Solid-PREP</span> inherits security and privacy considerations of both the <span class="super">Per Resource Events Protocol</span> and the Solid Protocol. Considerations relevant to the use of <span class="super">Per Resource Events Protocol</span> for transmitting notifications are discussed in <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#name-considerations">§ 11 Considerations</a>, and considerations relevant to Solid Protocol are discussed in <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> <a href="https://solidproject.org/ED/protocol#considerations">§ 10 Considerations</a>.</p>
+   <h3 class="heading settled" id="security-considerations"><span class="content">Security Considerations</span><a class="self-link" href="#security-considerations"></a></h3>
+   <p><em>This section is non-normative.</em></p>
+   <p><a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①⓪">Solid servers</a> are strongly discouraged from exposing information beyond the minimum amount necessary in a notification. <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client④">Solid clients</a> are strongly discouraged from exposing information beyond the minimum amount necessary to receive notifications from particular resources.</p>
+   <p><a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client⑤">Solid clients</a> are discouraged from sending requests for notifications to untrusted <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①①">Solid servers</a>, including localhost or any other loopback IP address, in order to avoid making arbitrary requests.</p>
+  </main>
+<script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <dl>
+   <dt id="biblio-activitystreams-vocabulary">[ACTIVITYSTREAMS-VOCABULARY]
+   <dd>James Snell; Evan Prodromou. <a href="https://w3c.github.io/activitystreams/vocabulary/"><cite>Activity Vocabulary</cite></a>. URL: <a href="https://w3c.github.io/activitystreams/vocabulary/">https://w3c.github.io/activitystreams/vocabulary/</a>
+   <dt id="biblio-json-ld11">[JSON-LD11]
+   <dd>Gregg Kellogg; Pierre-Antoine Champin; Dave Longley. <a href="https://w3c.github.io/json-ld-syntax/"><cite>JSON-LD 1.1</cite></a>. URL: <a href="https://w3c.github.io/json-ld-syntax/">https://w3c.github.io/json-ld-syntax/</a>
+   <dt id="biblio-prep">[PREP]
+   <dd>Rahul Gupta. <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html"><cite>Per Resource Events</cite></a>. URL: <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html">https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html</a>
+   <dt id="biblio-rfc2119">[RFC2119]
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dt id="biblio-rfc5789">[RFC5789]
+   <dd>L. Dusseault; J. Snell. <a href="https://httpwg.org/specs/rfc5789.html"><cite>PATCH Method for HTTP</cite></a>. March 2010. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc5789.html">https://httpwg.org/specs/rfc5789.html</a>
+   <dt id="biblio-rfc8174">[RFC8174]
+   <dd>B. Leiba. <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+   <dt id="biblio-rfc9110">[RFC9110]
+   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://www.rfc-editor.org/rfc/rfc9110"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>
+   <dt id="biblio-solid">[SOLID]
+   <dd>Sarven Capadisli, Ed.; et al. <a href="https://solidproject.org/ED/protocol"><cite>Solid Protocol</cite></a>. URL: <a href="https://solidproject.org/ED/protocol">https://solidproject.org/ED/protocol</a>
+   <dt id="biblio-solid-notifications">[SOLID-NOTIFICATIONS]
+   <dd>Aaron Coburn; et al. <a href="https://solid.github.io/notifications/protocol"><cite>Solid Notifications Protocol</cite></a>. URL: <a href="https://solid.github.io/notifications/protocol">https://solid.github.io/notifications/protocol</a>
+   <dt id="biblio-xmlschema11-1">[XMLSCHEMA11-1]
+   <dd>Sandy Gao; et al. <a href="https://www.w3.org/TR/xmlschema11-1/"><cite>W3C XML Schema Definition Language (XSD) 1.1 Part 1: Structures</cite></a>. 5 April 2012. REC. URL: <a href="https://www.w3.org/TR/xmlschema11-1/">https://www.w3.org/TR/xmlschema11-1/</a>
+  </dl>
+  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <dl>
+   <dt id="biblio-activitystreams-core">[ACTIVITYSTREAMS-CORE]
+   <dd>James Snell; Evan Prodromou. <a href="https://w3c.github.io/activitystreams/core/"><cite>Activity Streams 2.0</cite></a>. URL: <a href="https://w3c.github.io/activitystreams/core/">https://w3c.github.io/activitystreams/core/</a>
+  </dl>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['solid-server'] = {"dfnID": "solid-server", "url": "#solid-server", "dfnText": "Solid Server", "refSections": [{"refs": [{"id": "ref-for-solid-server"}], "title": "Interoperability"}, {"refs": [{"id": "ref-for-solid-server\u2460"}], "title": "2. Request"}, {"refs": [{"id": "ref-for-solid-server\u2461"}], "title": "3. Format"}, {"refs": [{"id": "ref-for-solid-server\u2462"}, {"id": "ref-for-solid-server\u2463"}], "title": "4. Triggers"}, {"refs": [{"id": "ref-for-solid-server\u2464"}], "title": "4.3. Don\u2019t Jump the Gun"}, {"refs": [{"id": "ref-for-solid-server\u2465"}, {"id": "ref-for-solid-server\u2466"}], "title": "5.1. Properties"}, {"refs": [{"id": "ref-for-solid-server\u2467"}], "title": "5.2. Extended Content"}, {"refs": [{"id": "ref-for-solid-server\u2468"}], "title": "6. Activity Mapping"}, {"refs": [{"id": "ref-for-solid-server\u2460\u24ea"}, {"id": "ref-for-solid-server\u2460\u2460"}], "title": "Security Considerations"}], "external": false};
+window.dfnpanelData['solid-client'] = {"dfnID": "solid-client", "url": "#solid-client", "dfnText": "Solid Client", "refSections": [{"refs": [{"id": "ref-for-solid-client"}], "title": "Interoperability"}, {"refs": [{"id": "ref-for-solid-client\u2460"}], "title": "4. Triggers"}, {"refs": [{"id": "ref-for-solid-client\u2461"}], "title": "4.3. Don\u2019t Jump the Gun"}, {"refs": [{"id": "ref-for-solid-client\u2462"}], "title": "5.2. Extended Content"}, {"refs": [{"id": "ref-for-solid-client\u2463"}, {"id": "ref-for-solid-client\u2464"}], "title": "Security Considerations"}], "external": false};
+window.dfnpanelData['Solid-client—Solid-server-interoperability'] = {"dfnID": "Solid-client\u2014Solid-server-interoperability", "url": "#Solid-client\u2014Solid-server-interoperability", "dfnText": "Solid Client\u2014Solid Server Interoperability", "refSections": [{"refs": [{"id": "ref-for-Solid-client\u2014Solid-server-interoperability"}], "title": "Interoperability"}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}
+</script>
