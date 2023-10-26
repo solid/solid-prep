@@ -60,8 +60,8 @@ When a request sent to the resource with one of the following [[RFC9110#section-
       <code> [[RFC9110#section-9.3.3|POST]] <br>
     <td>
       <code> [[RFC9110#section-15.3.1|200 (OK)]] <br>
-      <code> [[RFC9110#section-15.3.5|204 (No Content)]] <br>
       <code> [[RFC9110#section-15.3.2|201 (Created)]] <br>
+      <code> [[RFC9110#section-15.3.5|204 (No Content)]] <br>
       <code> [[RFC9110#section-15.3.6|205 (Reset Content)]]
 </table>
 
