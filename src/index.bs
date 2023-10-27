@@ -81,6 +81,17 @@ Status Text:
     vertical-align: top;
   }
 
+  table th.center{
+    text-align: center;
+    width: fit-content;
+  }
+
+  table td.tick{
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 800;
+  }
+
   @media (prefers-color-scheme: dark) {
     table {
       border-color: white;
