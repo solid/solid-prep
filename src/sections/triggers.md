@@ -1,6 +1,6 @@
 # Triggers # {#triggers}
 
-The Solid Protocol [[!SOLID]] requires an LDP container's state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a [=Solid server=] to transmit [PREP] notification on that resource or its container or both.
+The Solid Protocol [[!SOLID]] requires an LDP container's state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a [=Solid server=] to transmit a [PREP] notification on that resource or its container or both.
 
 A [=Solid server=] implementing the [SUPER] on an LDP Resource SHOULD send a [PREP] notification to a [=Solid client=] upon the following triggers:
 
