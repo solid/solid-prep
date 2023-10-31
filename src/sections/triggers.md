@@ -67,7 +67,7 @@ A [=Solid server=] MUST NOT transmit a [PREP] notification before the resource h
   </table>
   <br/>
 
-  <p>Additionally, a [=Solid server=] ought to send [PREP] notification(s) on an resource and/or its container when modified at a later time as result of HTTP request that generates a <code>[[RFC9110#section-15.3.3|202 (Accepted)]]</code> status code.
+  <p>Additionally, a [=Solid server=] ought to send [PREP] notification(s) on a resource and/or its container when modified at a later time as result of HTTP request that generates a <code>[[RFC9110#section-15.3.3|202 (Accepted)]]</code> status code.
 
   <p>A [=Solid server=] needs to ensure that a [PREP] notification is not transmitted before a response has been sent to the user agent that initiated the HTTP request that triggered the said notification.
 
