@@ -8,7 +8,7 @@
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://cxres.github.io/solid-prep/protocol" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/star.png" rel="icon">
-  <meta content="8e715f6d50a5231172012155d18da9413b3df7ff" name="document-revision">
+  <meta content="0410de161ec78e81b0f23ebfd46826fb1d26c998" name="document-revision">
 <style>
   body {
     counter-reset: tables;
@@ -37,7 +37,6 @@
   }
 
   table.auto {
-    width: 100%;
     table-layout: auto;
   }
 
@@ -59,6 +58,17 @@
     border: 2px solid;
     padding: 4px 8px;
     vertical-align: top;
+  }
+
+  th.center {
+    text-align: center;
+    width: fit-content;
+  }
+
+  td.tick {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 800;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -523,7 +533,7 @@ dfn > a.self-link::before      { content: "#"; }
  <body class="h-entry">
   <div class="head">
    <h1 class="p-name no-ref" id="title">Solid-PREP</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-20">20 October 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-31">31 October 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -574,13 +584,7 @@ dfn > a.self-link::before      { content: "#"; }
      </ol>
     <li><a href="#request"><span class="secno">2</span> <span class="content">Request</span></a>
     <li><a href="#format"><span class="secno">3</span> <span class="content">Format</span></a>
-    <li>
-     <a href="#triggers"><span class="secno">4</span> <span class="content">Triggers</span></a>
-     <ol class="toc">
-      <li><a href="#triggers-resource-and-their-containers"><span class="secno">4.1</span> <span class="content">Resources and their Containers</span></a>
-      <li><a href="#triggers-resources-only"><span class="secno">4.2</span> <span class="content">Resources only</span></a>
-      <li><a href="#trigger-timing"><span class="secno">4.3</span> <span class="content">Don’t Jump the Gun</span></a>
-     </ol>
+    <li><a href="#triggers"><span class="secno">4</span> <span class="content">Triggers</span></a>
     <li>
      <a href="#data-model"><span class="secno">5</span> <span class="content">Data Model</span></a>
      <ol class="toc">
@@ -680,38 +684,54 @@ appear in all capitals, as shown here.</p>
    <h2 class="heading settled" data-level="3" id="format"><span class="secno">3. </span><span class="content">Format</span><a class="self-link" href="#format"></a></h2>
    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server②">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST be able to transmit <span class="super-short">PREP</span> notifications using the `application/ld+json` <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> media type. It MAY also support other media types to transmit <span class="super-short">PREP</span> notifications.</p>
    <h2 class="heading settled" data-level="4" id="triggers"><span class="secno">4. </span><span class="content">Triggers</span><a class="self-link" href="#triggers"></a></h2>
-   <p>The Solid Protocol <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> requires an LDP container’s state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server③">Solid server</a> to transmit <span class="super-short">PREP</span> notification not only on that resource but also on its container.</p>
-   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server④">Solid server</a> implementing the <span class="super">Per Resource Events Protocol</span> on an LDP Resource SHOULD send a <span class="super-short">PREP</span> notification to a <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client①">Solid client</a> upon the following triggers:</p>
-   <h3 class="heading settled" data-level="4.1" id="triggers-resource-and-their-containers"><span class="secno">4.1. </span><span class="content">Resources and their Containers</span><a class="self-link" href="#triggers-resource-and-their-containers"></a></h3>
-   <p>When a request sent to the resource or a contained resource within it, with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a> generates a response with any of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15">HTTP status codes</a>:</p>
-   <table class="numbered">
-    <caption> Notification Triggers (Resources and their Containers) </caption>
-    <tbody>
-     <tr>
-      <th> Request Method 
-      <th> Response Status 
-     <tr>
-      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> <br> <code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code></code></code>
-      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> </code></code>
-   </table>
-   <h3 class="heading settled" data-level="4.2" id="triggers-resources-only"><span class="secno">4.2. </span><span class="content">Resources only</span><a class="self-link" href="#triggers-resources-only"></a></h3>
-   <p>When a request sent to the resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a> generates a response with any of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15">HTTP status codes</a>:</p>
-   <table class="numbered">
-    <caption> Notification Triggers (Resource only) </caption>
-    <tbody>
-     <tr>
-      <th> Request Method 
-      <th> Response Status 
-     <tr>
-      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> <br> </code>
-      <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.2">201 (Created)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.6">205 (Reset Content)</a> </code></code></code></code>
-   </table>
-   <h3 class="heading settled" data-level="4.3" id="trigger-timing"><span class="secno">4.3. </span><span class="content">Don’t Jump the Gun</span><a class="self-link" href="#trigger-timing"></a></h3>
-   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑤">Solid server</a> MUST NOT transmit a <span class="super-short">PREP</span> notification to a <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client②">Solid client</a> before a response has been sent to the user agent that initiated the request that triggered the said notification.</p>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server③">Solid server</a> implementing the <span class="super">Per Resource Events Protocol</span> on an LDP Resource SHOULD send a <span class="super-short">PREP</span> notification when the state of the said resource is modified.</p>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server④">Solid server</a> MUST NOT transmit a <span class="super-short">PREP</span> notification before the resource has been modified and a confirmation (if necessary) has been sent to (but might not have been received by) the agent that initiated the resource modification.</p>
+   <div class="advisement">
+    <div class="marker">Implementation Guidance</div>
+    <p>The Solid Protocol <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> requires an LDP container’s state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑤">Solid server</a> to transmit a <span class="super-short">PREP</span> notification on that resource or its container or both.</p>
+    <p>It follows that a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑥">Solid server</a> ought to send <span class="super-short">PREP</span> notification(s) on an resource and/or its container, when a request with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a> generates a response with any of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15">HTTP status codes</a>:</p>
+    <table class="numbered auto">
+     <caption> HTTP Notification Triggers </caption>
+     <tbody>
+      <tr>
+       <th rowspan="2"> Request Method 
+       <th rowspan="2"> Response Status 
+       <th class="center" colspan="2"> Notify 
+      <tr>
+       <th class="center"> Resource 
+       <th class="center"> Container 
+      <tr>
+       <td rowspan="2"> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> <br> <code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> <br> </code></code>
+       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.6">205 (Reset Content)</a> </code></code></code>
+       <td class="tick"> ✓ 
+       <td class="tick"> ✓ 
+      <tr>
+       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.2">201 (Created)</a> <br> </code>
+       <td>
+       <td class="tick"> ✓ 
+      <tr>
+       <td rowspan="2"> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> </code>
+       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.6">205 (Reset Content)</a> </code></code></code>
+       <td class="tick"> ✓ 
+       <td class="tick"> ✓ 
+      <tr>
+       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.2">201 (Created)</a> </code>
+       <td class="tick"> ✓ 
+       <td>
+      <tr>
+       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code>
+       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> </code></code>
+       <td class="tick"> ✓ 
+       <td class="tick"> ✓ 
+    </table>
+     <br> 
+    <p>Additionally, a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑦">Solid server</a> ought to send <span class="super-short">PREP</span> notification(s) on a resource and/or its container when modified at a later time as result of HTTP request that generates a <code><a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.3">202 (Accepted)</a></code> status code.</p>
+    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑧">Solid server</a> needs to ensure that a <span class="super-short">PREP</span> notification is not transmitted before a response has been sent to the user agent that initiated the HTTP request that triggered the said notification.</p>
+   </div>
    <h2 class="heading settled" data-level="5" id="data-model"><span class="secno">5. </span><span class="content">Data Model</span><a class="self-link" href="#data-model"></a></h2>
    <p>The core notification data is expressed with the Activity Streams <a data-link-type="biblio" href="#biblio-activitystreams-vocabulary" title="Activity Vocabulary">[ACTIVITYSTREAMS-VOCABULARY]</a> and <a href="https://www.w3.org/ns/solid/notifications">Solid Notifications</a> <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> vocabularies.</p>
    <h3 class="heading settled" data-level="5.1" id="notification-properties"><span class="secno">5.1. </span><span class="content">Properties</span><a class="self-link" href="#notification-properties"></a></h3>
-   <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑥">Solid server</a> MUST have the following properties:</p>
+   <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑨">Solid server</a> MUST have the following properties:</p>
    <dl>
     <dt id="notification-property-id"><a class="self-link" href="#notification-property-id"></a><code><em>id</em> &lt;xs:string></code> 
     <dd> an opaque identifier for the notification. Can be used to set `Last-Event-ID` in a subsequent <span class="super-short">PREP</span> notifications request. 
@@ -720,20 +740,20 @@ appear in all capitals, as shown here.</p>
     <dt id="notification-property-published"><a class="self-link" href="#notification-property-published"></a><code><em>published</em> &lt;xs:dateTime></code> 
     <dd> the date and time of the notification. 
    </dl>
-   <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑦">Solid server</a> SHOULD have the following properties:</p>
+   <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①⓪">Solid server</a> SHOULD have the following properties:</p>
    <dl>
     <dt id="notification-property-state"><a class="self-link" href="#notification-property-state"></a><code><em>state</em> &lt;xs:string></code> 
     <dd> an opaque identifier for the last known state of the resource. 
    </dl>
    <h3 class="heading settled" data-level="5.2" id="extended-content"><span class="secno">5.2. </span><span class="content">Extended Content</span><a class="self-link" href="#extended-content"></a></h3>
-   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑧">Solid server</a> MAY augment the <a href="https://w3c.github.io/json-ld-syntax/#the-context">JSON-LD Context</a> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> definition and extend the content of notifications.</p>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①①">Solid server</a> MAY augment the <a href="https://w3c.github.io/json-ld-syntax/#the-context">JSON-LD Context</a> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> definition and extend the content of notifications.</p>
    <p class="note" role="note"><span class="marker">NOTE:</span> See examples of <a href="https://w3c.github.io/activitystreams/core/#example-using-multiple-vocabularies">using multiple vocabularies</a> in the Activity Streams <a data-link-type="biblio" href="#biblio-activitystreams-core" title="Activity Streams 2.0">[ACTIVITYSTREAMS-CORE]</a> specification.</p>
    <div class="advisement">
     <div class="marker">Implementation Guidance</div>
-     <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client③">Solid clients</a> are encouraged to be aware that anything can be included in the notification. Clients might want to take suitable precautions when ascertaining the veracity of the contents. 
+     <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client①">Solid clients</a> are encouraged to be aware that anything can be included in the notification. Clients might want to take suitable precautions when ascertaining the veracity of the contents. 
    </div>
    <h2 class="heading settled" data-level="6" id="activity-mapping"><span class="secno">6. </span><span class="content">Activity Mapping</span><a class="self-link" href="#activity-mapping"></a></h2>
-   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑨">Solid server</a> implementing the <span class="title">Solid-PREP</span> on an LDP Resource MUST set the activity <a href="#notification-property-type">type</a> for a <span class="super-short">PREP</span> notification based on the triggering request as follows:</p>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①②">Solid server</a> implementing the <span class="title">Solid-PREP</span> on an LDP Resource MUST set the activity <a href="#notification-property-type">type</a> for a <span class="super-short">PREP</span> notification based on the triggering request as follows:</p>
    <h3 class="heading settled" data-level="6.1" id="activity-mapping-ldp-resource"><span class="secno">6.1. </span><span class="content">LDP Resource</span><a class="self-link" href="#activity-mapping-ldp-resource"></a></h3>
    <p>When the <span class="super-short">PREP</span> notification is triggered by a request on the resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
    <table class="numbered">
@@ -797,8 +817,8 @@ appear in all capitals, as shown here.</p>
    <p>Since <span class="title">Solid-PREP</span> defines representation and semantics for the use of <span class="super">Per Resource Events Protocol</span> to transmit notifications from Solid resources, it follows that the <span class="title">Solid-PREP</span> inherits security and privacy considerations of both the <span class="super">Per Resource Events Protocol</span> and the Solid Protocol. Considerations relevant to the use of <span class="super">Per Resource Events Protocol</span> for transmitting notifications are discussed in <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#name-considerations">§ 11 Considerations</a>, and considerations relevant to Solid Protocol are discussed in <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> <a href="https://solidproject.org/ED/protocol#considerations">§ 10 Considerations</a>.</p>
    <h3 class="heading settled" id="security-considerations"><span class="content">Security Considerations</span><a class="self-link" href="#security-considerations"></a></h3>
    <p><em>This section is non-normative.</em></p>
-   <p><a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①⓪">Solid servers</a> are strongly discouraged from exposing information beyond the minimum amount necessary in a notification. <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client④">Solid clients</a> are strongly discouraged from exposing information beyond the minimum amount necessary to receive notifications from particular resources.</p>
-   <p><a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client⑤">Solid clients</a> are discouraged from sending requests for notifications to untrusted <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①①">Solid servers</a>, including localhost or any other loopback IP address, in order to avoid making arbitrary requests.</p>
+   <p><a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①③">Solid servers</a> are strongly discouraged from exposing information beyond the minimum amount necessary in a notification. <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client②">Solid clients</a> are strongly discouraged from exposing information beyond the minimum amount necessary to receive notifications from particular resources.</p>
+   <p><a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client③">Solid clients</a> are discouraged from sending requests for notifications to untrusted <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①④">Solid servers</a>, including localhost or any other loopback IP address, in order to avoid making arbitrary requests.</p>
   </main>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -985,8 +1005,8 @@ appear in all capitals, as shown here.</p>
 </script>
 <script>/* Boilerplate: script-dfn-panel-json */
 window.dfnpanelData = {};
-window.dfnpanelData['solid-server'] = {"dfnID": "solid-server", "url": "#solid-server", "dfnText": "Solid Server", "refSections": [{"refs": [{"id": "ref-for-solid-server"}], "title": "Interoperability"}, {"refs": [{"id": "ref-for-solid-server\u2460"}], "title": "2. Request"}, {"refs": [{"id": "ref-for-solid-server\u2461"}], "title": "3. Format"}, {"refs": [{"id": "ref-for-solid-server\u2462"}, {"id": "ref-for-solid-server\u2463"}], "title": "4. Triggers"}, {"refs": [{"id": "ref-for-solid-server\u2464"}], "title": "4.3. Don\u2019t Jump the Gun"}, {"refs": [{"id": "ref-for-solid-server\u2465"}, {"id": "ref-for-solid-server\u2466"}], "title": "5.1. Properties"}, {"refs": [{"id": "ref-for-solid-server\u2467"}], "title": "5.2. Extended Content"}, {"refs": [{"id": "ref-for-solid-server\u2468"}], "title": "6. Activity Mapping"}, {"refs": [{"id": "ref-for-solid-server\u2460\u24ea"}, {"id": "ref-for-solid-server\u2460\u2460"}], "title": "Security Considerations"}], "external": false};
-window.dfnpanelData['solid-client'] = {"dfnID": "solid-client", "url": "#solid-client", "dfnText": "Solid Client", "refSections": [{"refs": [{"id": "ref-for-solid-client"}], "title": "Interoperability"}, {"refs": [{"id": "ref-for-solid-client\u2460"}], "title": "4. Triggers"}, {"refs": [{"id": "ref-for-solid-client\u2461"}], "title": "4.3. Don\u2019t Jump the Gun"}, {"refs": [{"id": "ref-for-solid-client\u2462"}], "title": "5.2. Extended Content"}, {"refs": [{"id": "ref-for-solid-client\u2463"}, {"id": "ref-for-solid-client\u2464"}], "title": "Security Considerations"}], "external": false};
+window.dfnpanelData['solid-server'] = {"dfnID": "solid-server", "url": "#solid-server", "dfnText": "Solid Server", "refSections": [{"refs": [{"id": "ref-for-solid-server"}], "title": "Interoperability"}, {"refs": [{"id": "ref-for-solid-server\u2460"}], "title": "2. Request"}, {"refs": [{"id": "ref-for-solid-server\u2461"}], "title": "3. Format"}, {"refs": [{"id": "ref-for-solid-server\u2462"}, {"id": "ref-for-solid-server\u2463"}, {"id": "ref-for-solid-server\u2464"}, {"id": "ref-for-solid-server\u2465"}, {"id": "ref-for-solid-server\u2466"}, {"id": "ref-for-solid-server\u2467"}], "title": "4. Triggers"}, {"refs": [{"id": "ref-for-solid-server\u2468"}, {"id": "ref-for-solid-server\u2460\u24ea"}], "title": "5.1. Properties"}, {"refs": [{"id": "ref-for-solid-server\u2460\u2460"}], "title": "5.2. Extended Content"}, {"refs": [{"id": "ref-for-solid-server\u2460\u2461"}], "title": "6. Activity Mapping"}, {"refs": [{"id": "ref-for-solid-server\u2460\u2462"}, {"id": "ref-for-solid-server\u2460\u2463"}], "title": "Security Considerations"}], "external": false};
+window.dfnpanelData['solid-client'] = {"dfnID": "solid-client", "url": "#solid-client", "dfnText": "Solid Client", "refSections": [{"refs": [{"id": "ref-for-solid-client"}], "title": "Interoperability"}, {"refs": [{"id": "ref-for-solid-client\u2460"}], "title": "5.2. Extended Content"}, {"refs": [{"id": "ref-for-solid-client\u2461"}, {"id": "ref-for-solid-client\u2462"}], "title": "Security Considerations"}], "external": false};
 window.dfnpanelData['Solid-client—Solid-server-interoperability'] = {"dfnID": "Solid-client\u2014Solid-server-interoperability", "url": "#Solid-client\u2014Solid-server-interoperability", "dfnText": "Solid Client\u2014Solid Server Interoperability", "refSections": [{"refs": [{"id": "ref-for-Solid-client\u2014Solid-server-interoperability"}], "title": "Interoperability"}], "external": false};
 </script>
 <script>/* Boilerplate: script-dom-helper */
