@@ -1,6 +1,6 @@
 # Data Model # {#data-model}
 
-The core notification data is expressed with the Activity Streams [[!ACTIVITYSTREAMS-VOCABULARY]] and [Solid Notifications](https://www.w3.org/ns/solid/notifications) [[!SOLID-NOTIFICATIONS]] vocabularies.
+The core notification data is expressed with the Activity Streams [[ACTIVITYSTREAMS-VOCABULARY]] and [Solid Notifications](https://www.w3.org/ns/solid/notifications) [[!SOLID-NOTIFICATIONS]] vocabularies.
 
 ## Properties ## {#notification-properties}
 
@@ -12,7 +12,7 @@ A [PREP] notification from an LDP Resource on a [=Solid server=] MUST have the f
   <dd> an opaque identifier for the notification. Can be used to set `Last-Event-ID` in a subsequent [PREP] notifications request.
 
   <dt id="notification-property-type"><code>*type* &lt;as:Activity></code>
-  <dd> the specific [type of activity](https://www.w3.org/TR/activitystreams-vocabulary/#activity-types) that triggered the notification. [[#activity-mapping]] specifies how this property is set.
+  <dd> the [[ACTIVITYSTREAMS-VOCABULARY#activity-types|type of activity]] that triggered the notification.
 
   <dt id="notification-property-published"><code>*published* &lt;xs:dateTime></code>
   <dd> the date and time of the notification.
