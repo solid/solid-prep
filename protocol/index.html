@@ -8,11 +8,14 @@
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://cxres.github.io/solid-prep/protocol" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/star.png" rel="icon">
-  <meta content="0410de161ec78e81b0f23ebfd46826fb1d26c998" name="document-revision">
+  <meta content="1a21f0a614ea5376e6acac6c24e310ced419b97f" name="document-revision">
 <style>
   body {
-    counter-reset: tables;
     background-image: none;
+  }
+
+  main {
+    counter-reset: tables;
   }
 
   .v-space {
@@ -40,12 +43,13 @@
     table-layout: auto;
   }
 
-  table.numbered {
-    counter-increment: tables;
-  }
-
   table > caption {
     padding-bottom: 8px;
+  }
+
+  table.numbered {
+    contain: none;
+    counter-increment: tables;
   }
 
   table.numbered > caption::before {
@@ -533,7 +537,7 @@ dfn > a.self-link::before      { content: "#"; }
  <body class="h-entry">
   <div class="head">
    <h1 class="p-name no-ref" id="title">Solid-PREP</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-31">31 October 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-13">13 January 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -591,13 +595,7 @@ dfn > a.self-link::before      { content: "#"; }
       <li><a href="#notification-properties"><span class="secno">5.1</span> <span class="content">Properties</span></a>
       <li><a href="#extended-content"><span class="secno">5.2</span> <span class="content">Extended Content</span></a>
      </ol>
-    <li>
-     <a href="#activity-mapping"><span class="secno">6</span> <span class="content">Activity Mapping</span></a>
-     <ol class="toc">
-      <li><a href="#activity-mapping-ldp-resource"><span class="secno">6.1</span> <span class="content">LDP Resource</span></a>
-      <li><a href="#activity-mapping-existing-resource-ldp-container"><span class="secno">6.2</span> <span class="content">Existing Resource in LDP Container</span></a>
-      <li><a href="#activity-mapping-new-resource-ldp-container"><span class="secno">6.3</span> <span class="content">New Resource in LDP Container</span></a>
-     </ol>
+    <li><a href="#activity-mapping"><span class="secno">6</span> <span class="content">Activity Mapping</span></a>
     <li>
      <a href="#considerations"><span class="secno"></span> <span class="content"> Considerations </span></a>
      <ol class="toc">
@@ -689,7 +687,7 @@ appear in all capitals, as shown here.</p>
    <div class="advisement">
     <div class="marker">Implementation Guidance</div>
     <p>The Solid Protocol <a data-link-type="biblio" href="#biblio-solid" title="Solid Protocol">[SOLID]</a> requires an LDP container’s state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑤">Solid server</a> to transmit a <span class="super-short">PREP</span> notification on that resource or its container or both.</p>
-    <p>It follows that a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑥">Solid server</a> ought to send <span class="super-short">PREP</span> notification(s) on an resource and/or its container, when a request with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a> generates a response with any of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15">HTTP status codes</a>:</p>
+    <p>It follows that a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑥">Solid server</a> ought to send <span class="super-short">PREP</span> notification(s) on an resource and/or its container, when a request with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a> generates a response with any of the following <a href="https://httpwg.org/specs/rfc9110.html#status.codes">HTTP status codes</a>:</p>
     <table class="numbered auto">
      <caption> HTTP Notification Triggers </caption>
      <tbody>
@@ -701,31 +699,31 @@ appear in all capitals, as shown here.</p>
        <th class="center"> Resource 
        <th class="center"> Container 
       <tr>
-       <td rowspan="2"> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> <br> <code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> <br> </code></code>
-       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.6">205 (Reset Content)</a> </code></code></code>
+       <td rowspan="2"> <code> <a href="https://httpwg.org/specs/rfc9110.html#PUT">PUT</a> <br> <code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> <br> </code></code>
+       <td> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.200">200 (OK)</a> <br> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.204">204 (No Content)</a> <br> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.205">205 (Reset Content)</a> </code></code></code>
        <td class="tick"> ✓ 
        <td class="tick"> ✓ 
       <tr>
-       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.2">201 (Created)</a> <br> </code>
+       <td> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.201">201 (Created)</a> <br> </code>
        <td>
        <td class="tick"> ✓ 
       <tr>
-       <td rowspan="2"> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> </code>
-       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.6">205 (Reset Content)</a> </code></code></code>
+       <td rowspan="2"> <code> <a href="https://httpwg.org/specs/rfc9110.html#POST">POST</a> </code>
+       <td> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.200">200 (OK)</a> <br> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.204">204 (No Content)</a> <br> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.205">205 (Reset Content)</a> </code></code></code>
        <td class="tick"> ✓ 
        <td class="tick"> ✓ 
       <tr>
-       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.2">201 (Created)</a> </code>
+       <td> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.201">201 (Created)</a> </code>
        <td class="tick"> ✓ 
        <td>
       <tr>
-       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code>
-       <td> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.1">200 (OK)</a> <br> <code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.5">204 (No Content)</a> <br> </code></code>
+       <td> <code> <a href="https://httpwg.org/specs/rfc9110.html#DELETE">DELETE</a> </code>
+       <td> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.200">200 (OK)</a> <br> <code> <a href="https://httpwg.org/specs/rfc9110.html#status.204">204 (No Content)</a> <br> </code></code>
        <td class="tick"> ✓ 
        <td class="tick"> ✓ 
     </table>
      <br> 
-    <p>Additionally, a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑦">Solid server</a> ought to send <span class="super-short">PREP</span> notification(s) on a resource and/or its container when modified at a later time as result of HTTP request that generates a <code><a href="https://www.rfc-editor.org/rfc/rfc9110#section-15.3.3">202 (Accepted)</a></code> status code.</p>
+    <p>Additionally, a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑦">Solid server</a> ought to send <span class="super-short">PREP</span> notification(s) on a resource and/or its container when modified at a later time as result of HTTP request that generates a <code><a href="https://httpwg.org/specs/rfc9110.html#status.202">202 (Accepted)</a></code> status code.</p>
     <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑧">Solid server</a> needs to ensure that a <span class="super-short">PREP</span> notification is not transmitted before a response has been sent to the user agent that initiated the HTTP request that triggered the said notification.</p>
    </div>
    <h2 class="heading settled" data-level="5" id="data-model"><span class="secno">5. </span><span class="content">Data Model</span><a class="self-link" href="#data-model"></a></h2>
@@ -736,7 +734,7 @@ appear in all capitals, as shown here.</p>
     <dt id="notification-property-id"><a class="self-link" href="#notification-property-id"></a><code><em>id</em> &lt;xs:string></code> 
     <dd> an opaque identifier for the notification. Can be used to set `Last-Event-ID` in a subsequent <span class="super-short">PREP</span> notifications request. 
     <dt id="notification-property-type"><a class="self-link" href="#notification-property-type"></a><code><em>type</em> &lt;as:Activity></code> 
-    <dd> the specific <a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types">type of activity</a> that triggered the notification. <a href="#activity-mapping">§ 6 Activity Mapping</a> specifies how this property is set. 
+    <dd> the <a href="https://w3c.github.io/activitystreams/vocabulary/#activity-types">type of activity</a> that triggered the notification. 
     <dt id="notification-property-published"><a class="self-link" href="#notification-property-published"></a><code><em>published</em> &lt;xs:dateTime></code> 
     <dd> the date and time of the notification. 
    </dl>
@@ -753,63 +751,70 @@ appear in all capitals, as shown here.</p>
      <a data-link-type="dfn" href="#solid-client" id="ref-for-solid-client①">Solid clients</a> are encouraged to be aware that anything can be included in the notification. Clients might want to take suitable precautions when ascertaining the veracity of the contents. 
    </div>
    <h2 class="heading settled" data-level="6" id="activity-mapping"><span class="secno">6. </span><span class="content">Activity Mapping</span><a class="self-link" href="#activity-mapping"></a></h2>
-   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①②">Solid server</a> implementing the <span class="title">Solid-PREP</span> on an LDP Resource MUST set the activity <a href="#notification-property-type">type</a> for a <span class="super-short">PREP</span> notification based on the triggering request as follows:</p>
-   <h3 class="heading settled" data-level="6.1" id="activity-mapping-ldp-resource"><span class="secno">6.1. </span><span class="content">LDP Resource</span><a class="self-link" href="#activity-mapping-ldp-resource"></a></h3>
-   <p>When the <span class="super-short">PREP</span> notification is triggered by a request on the resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
-   <table class="numbered">
-    <caption> Activity Mapping for LDP Resources </caption>
-    <thead>
-     <tr>
-      <th> Request Method 
-      <th> Activity Type 
-    <tbody>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> </code>
-      <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
-     <tr>
-      <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> </code>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code>
-      <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-delete">as:Delete</a> </code>
-   </table>
-   <h3 class="heading settled" data-level="6.2" id="activity-mapping-existing-resource-ldp-container"><span class="secno">6.2. </span><span class="content">Existing Resource in LDP Container</span><a class="self-link" href="#activity-mapping-existing-resource-ldp-container"></a></h3>
-   <p>When the <span class="super-short">PREP</span> notification is triggered by a request on a contained resource with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
-   <table class="numbered">
-    <caption> Activity Mapping for LDP Containers when contained resources change </caption>
-    <thead>
-     <tr>
-      <th> Request Method 
-      <th> Activity Type 
-    <tbody>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> </code>
-      <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
-     <tr>
-      <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.3">POST</a> </code>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.5">DELETE</a> </code>
-      <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-remove">as:Remove</a> </code>
-   </table>
-    <br> 
-   <h3 class="heading settled" data-level="6.3" id="activity-mapping-new-resource-ldp-container"><span class="secno">6.3. </span><span class="content">New Resource in LDP Container</span><a class="self-link" href="#activity-mapping-new-resource-ldp-container"></a></h3>
-   <p>When the <span class="super-short">PREP</span> notification is triggered by a request to create a new resource inside that container (resource) with one of the following <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9">HTTP methods</a>:</p>
-   <table class="numbered">
-    <caption> Activity Mapping for LDP Containers when contained resources are created </caption>
-    <thead>
-     <tr>
-      <th> Request Method 
-      <th> Activity Type 
-    <tbody>
-     <tr>
-      <td><code> <a href="https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4">PUT</a> </code>
-      <td rowspan="2"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-add">as:Add</a> </code>
-     <tr>
-      <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
-   </table>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①②">Solid server</a> sending a <span class="super-short">PREP</span> notification as a result of some activity on an LDP Resource MUST set the <a href="#notification-property-type">type</a> property as the <a href="https://w3c.github.io/activitystreams/vocabulary/#activity-types">type of activity</a> that triggered the notification as specified by the Activity Streams vocabulary <a data-link-type="biblio" href="#biblio-activitystreams-vocabulary" title="Activity Vocabulary">[ACTIVITYSTREAMS-VOCABULARY]</a>.</p>
+   <div class="advisement">
+    <div class="marker">Implementation Guidance</div>
+    <p>When an LDP resource is modified by virtue of an HTTP request, the activity type ought to be set as follows:</p>
+    <ol>
+     <li data-md>
+      <p>When the <span class="super-short">PREP</span> notification is triggered by a request on the resource with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
+      <table class="numbered">
+       <caption> Activity Mapping for LDP Resources </caption>
+       <thead>
+        <tr>
+         <th> Request Method 
+         <th> Activity Type 
+       <tbody>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#PUT">PUT</a> </code>
+         <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#POST">POST</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#DELETE">DELETE</a> </code>
+         <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-delete">as:Delete</a> </code>
+      </table>
+       <br> 
+     <li data-md>
+      <p>When the <span class="super-short">PREP</span> notification is triggered by a request on a contained resource with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
+      <table class="numbered">
+       <caption> Activity Mapping for LDP Containers when contained resources change </caption>
+       <thead>
+        <tr>
+         <th> Request Method 
+         <th> Activity Type 
+       <tbody>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#PUT">PUT</a> </code>
+         <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#POST">POST</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#DELETE">DELETE</a> </code>
+         <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-remove">as:Remove</a> </code>
+      </table>
+       <br> 
+     <li data-md>
+      <p>When the <span class="super-short">PREP</span> notification is triggered by a request to create a new resource inside that container (resource) with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
+      <table class="numbered">
+       <caption> Activity Mapping for LDP Containers when contained resources are created </caption>
+       <thead>
+        <tr>
+         <th> Request Method 
+         <th> Activity Type 
+       <tbody>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#PUT">PUT</a> </code>
+         <td rowspan="2"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-add">as:Add</a> </code>
+        <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
+      </table>
+    </ol>
+   </div>
    <h2 class="no-num heading settled" id="considerations"><span class="content"> Considerations </span><a class="self-link" href="#considerations"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>This section details security and privacy considerations.</p>
@@ -837,7 +842,7 @@ appear in all capitals, as shown here.</p>
    <dt id="biblio-rfc8174">[RFC8174]
    <dd>B. Leiba. <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
    <dt id="biblio-rfc9110">[RFC9110]
-   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://www.rfc-editor.org/rfc/rfc9110"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>
+   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc9110.html"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://httpwg.org/specs/rfc9110.html">https://httpwg.org/specs/rfc9110.html</a>
    <dt id="biblio-solid">[SOLID]
    <dd>Sarven Capadisli, Ed.; et al. <a href="https://solidproject.org/ED/protocol"><cite>Solid Protocol</cite></a>. URL: <a href="https://solidproject.org/ED/protocol">https://solidproject.org/ED/protocol</a>
    <dt id="biblio-solid-notifications">[SOLID-NOTIFICATIONS]
