@@ -31,8 +31,11 @@ Status Text:
 
 <style>
   body {
-    counter-reset: tables;
     background-image: none;
+  }
+
+  main {
+    counter-reset: tables;
   }
 
   .v-space {
@@ -60,12 +63,13 @@ Status Text:
     table-layout: auto;
   }
 
-  table.numbered {
-    counter-increment: tables;
-  }
-
   table > caption {
     padding-bottom: 8px;
+  }
+
+  table.numbered {
+    contain: none;
+    counter-increment: tables;
   }
 
   table.numbered > caption::before {
