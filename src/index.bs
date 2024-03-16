@@ -17,7 +17,8 @@ Text Macro: SUPER <span class="super">Per Resource Events Protocol</span>
 Max ToC Depth: 2
 Indent: 2
 Editor: Rahul Gupta, https://cxres.pages.dev/profile/#i
-!Author: <a href="https://cxres.pages.dev/profile/#i">Rahul Gupta</a>
+!Authors: <a href="https://cxres.pages.dev/profile/#i">Rahul Gupta</a>
+!Authors: <a href="https://elf-pavlik.hackers4peace.net">elf Pavlik</a>
 Abstract:
   Solid-PREP defines representation and semantics for notifications sent from LDP Resources hosted on Solid PODS using the Per Resource Events Protocol.
 
