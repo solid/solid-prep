@@ -10,4 +10,4 @@ All are welcome to contribute by opening an issue or a pull request to the Solid
 
 **Solid-PREP** is available from the following URLs:
 
-* Editors Draft: <https://cxres.github.io/solid-prep/protocol>
+* Editors Draft: <https://solid.github.io/solid-prep/protocol/>
