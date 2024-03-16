@@ -31,10 +31,6 @@ Status Text:
 </pre>
 
 <style>
-  body {
-    background-image: none;
-  }
-
   main {
     counter-reset: tables;
   }
