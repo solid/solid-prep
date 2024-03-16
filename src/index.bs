@@ -1,6 +1,6 @@
 <pre class="metadata">
 Title: Solid-PREP
-Favicon: https://www.w3.org/2008/site/images/star.png
+Favicon: https://solidproject.org/favicon.ico
 Shortname: PREP
 Level: 1
 Status: w3c/ED
