@@ -41,11 +41,9 @@ A [=Solid server=] sending a [PREP] notification as a result of some activity on
       <tbody>
         <tr>
           <td><code> [[RFC9110#PUT|PUT]]
-          <td rowspan="3"><code> [[ACTIVITYSTREAMS-VOCABULARY#dfn-update|as:Update]]
+          <td rowspan="2"><code> [[ACTIVITYSTREAMS-VOCABULARY#dfn-update|as:Update]]
         <tr>
           <td><code> [[RFC5789#section-2|PATCH]]
-        <tr>
-          <td><code> [[RFC9110#POST|POST]]
         <tr>
           <td><code> [[RFC9110#DELETE|DELETE]]
           <td><code> [[ACTIVITYSTREAMS-VOCABULARY#dfn-remove|as:Remove]]
