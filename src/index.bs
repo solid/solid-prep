@@ -4,8 +4,8 @@ Favicon: https://solidproject.org/favicon.ico
 Shortname: PREP
 Level: 1
 Status: w3c/ED
-ED: https://cxres.github.io/solid-prep/protocol
-Repository: cxres/solid-prep
+ED: https://solid.github.io/solid-prep/protocol
+Repository: solid/solid-prep
 Inline Github Issues: title
 Markup Shorthands: markdown yes, biblio yes, css no
 Boilerplate: issues-index no, conformance no, index no, logo no
