@@ -7,7 +7,7 @@ A [=Solid server=] MUST NOT transmit a [PREP] notification before the resource h
 <div class="advisement">
   <div class="marker">Implementation Guidance</div>
 
-  The Solid Protocol [[SOLID]] requires an LDP container's state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a [=Solid server=] to transmit a [PREP] notification on that resource or its container or both.
+  The Solid Protocol [[SOLID-PROTOCOL]] requires an LDP container's state is modified when certain HTTP events occur on a contained resource. Thus, an HTTP event on a resource can trigger a [=Solid server=] to transmit a [PREP] notification on that resource or its container or both.
 
   It follows that a [=Solid server=] ought to send [PREP] notification(s) on an resource and/or its container, when a request with one of the following [[RFC9110#methods|HTTP methods]] generates a response with any of the following [[RFC9110#status.codes|HTTP status codes]]:
 
