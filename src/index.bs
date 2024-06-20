@@ -3,7 +3,7 @@ Title: Solid-PREP
 Favicon: https://solidproject.org/favicon.ico
 Shortname: PREP
 Level: 1
-Status: w3c/ED
+Status: w3c/CG-DRAFT
 ED: https://solid.github.io/solid-prep/protocol
 Repository: solid/solid-prep
 Inline Github Issues: title
