@@ -5,10 +5,10 @@ The [PROTOCOL] identifies the following Classes of Products for conforming imple
 <dl>
 
   : <dfn>Solid Server</dfn>
-  :: A *Solid server* that builds on a [[Solid#server|server]] [[!SOLID]] and [[PREP#resource-server|resource server]] [[!PREP]] by defining the behaviour of resources.
+  :: A *Solid server* that builds on a [[SOLID-PROTOCOL#Server|server]] [[!SOLID-PROTOCOL]] and [[PREP#resource-server|resource server]] [[!PREP]] by defining the behaviour of resources.
 
   : <dfn>Solid Client</dfn>
-  :: A *Solid client* that builds on a [[Solid#client|client]] [[!SOLID]] and [[PREP#application-client|application client]] [[!PREP]].
+  :: A *Solid client* that builds on a [[SOLID-PROTOCOL#Client|client]] [[!SOLID-PROTOCOL]] and [[PREP#application-client|application client]] [[!PREP]].
 
 </dl>
 

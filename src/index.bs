@@ -144,36 +144,30 @@ Status Text:
 
 <pre class="biblio">
 {
-  "SOLID": {
-    "note": "Work in Progress",
+  "SOLID-PROTOCOL": {
     "authors": [
       "Sarven Capadisli, Ed.",
       "Tim Berners-Lee, Ed.",
-      "Ruben Verborgh, Ed.",
-      "Kjetil Kjernsmo Ed."
+      "Kjetil Kjernsmo, Ed."
     ],
     "href": "https://solidproject.org/TR/protocol",
-    "edDraft": "https://solidproject.org/ED/protocol",
     "title": "Solid Protocol",
-    "status": "Editor's Draft",
+    "status": "Draft Community Group Report",
     "publisher": "Solid Community Group"
   },
   "SOLID-NOTIFICATIONS": {
-    "note": "Work in Progress",
     "authors": [
+      "Sarven Capadisli, Ed.",
       "Aaron Coburn",
-      "Sarven Capadisli",
       "elf Pavlik",
       "Rahul Gupta"
     ],
     "href": "https://solidproject.org/TR/notifications-protocol",
-    "edDraft": "https://solid.github.io/notifications/protocol",
     "title": "Solid Notifications Protocol",
-    "status": "Editor's Draft",
+    "status": "Draft Community Group Report",
     "publisher": "Solid Community Group"
   },
   "PREP": {
-    "note": "Work in Progress",
     "authors": [
       "Rahul Gupta"
     ],
