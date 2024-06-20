@@ -8,7 +8,7 @@ This section details security and privacy considerations.
 
 Some of the normative references within this specification point to documents with a Living Standard or Draft status, meaning their contents can still change over time. It is advised to monitor these documents, as such changes might have implications.
 
-Since [PROTOCOL] defines representation and semantics for the use of [SUPER] to transmit notifications from Solid resources, it follows that the [PROTOCOL] inherits security and privacy considerations of both the [SUPER] and the Solid Protocol. Considerations relevant to the use of [SUPER] for transmitting notifications are discussed in [[!PREP]] [[PREP#name-considerations|§ 11 Considerations]], and considerations relevant to Solid Protocol are discussed in  [[!SOLID]] [[SOLID#considerations|§ 10 Considerations]].
+Since [PROTOCOL] defines representation and semantics for the use of [SUPER] to transmit notifications from Solid resources, it follows that the [PROTOCOL] inherits security and privacy considerations of both the [SUPER] and the Solid Protocol. Considerations relevant to the use of [SUPER] for transmitting notifications are discussed in [[!PREP]] [[PREP#name-considerations|§ 11 Considerations]], and considerations relevant to Solid Protocol are discussed in  [[!SOLID-PROTOCOL]] [[SOLID-PROTOCOL#considerations|§ 10 Considerations]].
 
 ## Security Considerations ## {#security-considerations}
 

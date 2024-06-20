@@ -2,7 +2,7 @@
 
 *This section is non-normative.*
 
-Solid [[SOLID]] uses linked data to interconnect data across decentralized data stores called PODS. [SUPER] [[PREP]] allows servers to transmit notifications over HTTP that can be customized for any given resource. This specification defines representation and semantics for [PREP] notifications sent from linked data resources hosted on Solid PODS.
+Solid [[SOLID-PROTOCOL]] uses linked data to interconnect data across decentralized data stores called PODS. [SUPER] [[PREP]] allows servers to transmit notifications over HTTP that can be customized for any given resource. This specification defines representation and semantics for [PREP] notifications sent from linked data resources hosted on Solid PODS.
 
 ## Audience ## {#intended-audience}
 
