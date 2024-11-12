@@ -33,7 +33,7 @@ A [=Solid server=] sending a [PREP] notification as a result of some activity on
     </table>
     <br/>
 
-  2. When the [PREP] notification is triggered by a request on a contained resource with one of the following [[RFC9110#methods|HTTP methods]]:
+  2. When the [PREP] notification is triggered on a container, by a request on a contained resource with one of the following [[RFC9110#methods|HTTP methods]]:
 
     <table class="numbered">
       <caption> Activity Mapping for LDP Containers when contained resources change
@@ -53,7 +53,7 @@ A [=Solid server=] sending a [PREP] notification as a result of some activity on
     </table>
     <br/>
 
-  3. When the [PREP] notification is triggered by a request to create a new resource inside that container (resource) with one of the following [[RFC9110#methods|HTTP methods]]:
+  3. When the [PREP] notification is triggered on a container, by a request to create a new resource inside that container (resource) with one of the following [[RFC9110#methods|HTTP methods]]:
 
     <table class="numbered">
       <caption> Activity Mapping for LDP Containers when contained resources are created
