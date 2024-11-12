@@ -18,12 +18,15 @@ A [=Solid server=] sending a [PREP] notification as a result of some activity on
           <th> Activity Type
       <tbody>
         <tr>
+          <td><code> [[RFC9110#POST|POST]] <br> ([[SOLID-PROTOCOL#resource-containment|Containers]])
+          <td><code> [[ACTIVITYSTREAMS-VOCABULARY#dfn-add|as:Add]]
+        <tr>
           <td><code> [[RFC9110#PUT|PUT]]
           <td rowspan="3"><code> [[ACTIVITYSTREAMS-VOCABULARY#dfn-update|as:Update]]
         <tr>
           <td><code> [[RFC5789#section-2|PATCH]]
         <tr>
-          <td><code> [[RFC9110#POST|POST]]
+          <td><code> [[RFC9110#POST|POST]] <br> (Not [[SOLID-PROTOCOL#resource-containment|Containers]])
         <tr>
           <td><code> [[RFC9110#DELETE|DELETE]]
           <td><code> [[ACTIVITYSTREAMS-VOCABULARY#dfn-delete|as:Delete]]
