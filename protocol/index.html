@@ -8,7 +8,7 @@
   <meta content="Bikeshed version 742f3d674, updated Mon Nov 4 14:56:54 2024 -0800" name="generator">
   <link href="https://solid.github.io/solid-prep/protocol" rel="canonical">
   <link href="https://solidproject.org/favicon.ico" rel="icon">
-  <meta content="fce61f0a1091bb47db656346731476d66f04c3f3" name="revision">
+  <meta content="7aa4c3796eaad356bfa56463049d96341f9ce6ee" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -637,7 +637,7 @@ dfn > a.self-link::before      { content: "#"; }
  <body class="h-entry">
   <div class="head">
    <h1 class="p-name no-ref" id="title">Solid-PREP</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-12">12 November 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-13">13 November 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -867,19 +867,22 @@ appear in all capitals, as shown here.</p>
          <th> Activity Type 
        <tbody>
         <tr>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#POST">POST</a> <br> (<a href="https://solidproject.org/TR/protocol#resource-containment">Containers</a>) </code>
+         <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-add">as:Add</a> </code>
+        <tr>
          <td><code> <a href="https://httpwg.org/specs/rfc9110.html#PUT">PUT</a> </code>
          <td rowspan="3"><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-update">as:Update</a> </code>
         <tr>
          <td><code> <a href="https://httpwg.org/specs/rfc5789.html#section-2">PATCH</a> </code>
         <tr>
-         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#POST">POST</a> </code>
+         <td><code> <a href="https://httpwg.org/specs/rfc9110.html#POST">POST</a> <br> (Not <a href="https://solidproject.org/TR/protocol#resource-containment">Containers</a>) </code>
         <tr>
          <td><code> <a href="https://httpwg.org/specs/rfc9110.html#DELETE">DELETE</a> </code>
          <td><code> <a href="https://w3c.github.io/activitystreams/vocabulary/#dfn-delete">as:Delete</a> </code>
       </table>
        <br> 
      <li data-md>
-      <p>When the <span class="super-short">PREP</span> notification is triggered by a request on a contained resource with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
+      <p>When the <span class="super-short">PREP</span> notification is triggered on a container, by a request on a contained resource with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
       <table class="numbered">
        <caption> Activity Mapping for LDP Containers when contained resources change </caption>
        <thead>
@@ -898,7 +901,7 @@ appear in all capitals, as shown here.</p>
       </table>
        <br> 
      <li data-md>
-      <p>When the <span class="super-short">PREP</span> notification is triggered by a request to create a new resource inside that container (resource) with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
+      <p>When the <span class="super-short">PREP</span> notification is triggered on a container, by a request to create a new resource inside that container (resource) with one of the following <a href="https://httpwg.org/specs/rfc9110.html#methods">HTTP methods</a>:</p>
       <table class="numbered">
        <caption> Activity Mapping for LDP Containers when contained resources are created </caption>
        <thead>
