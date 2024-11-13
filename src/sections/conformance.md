@@ -36,10 +36,13 @@ This document uses the following RDF vocabularies and corresponding namespace pr
       <th> Description
   <tbody>
     <tr>
+      <td> <code>rdf
+      <td> <samp>https://www.w3.org/1999/02/22-rdf-syntax-ns#
+      <td> [[!RDF-SCHEMA]]
+    <tr>
       <td> <code>xs
       <td> <samp>http://www.w3.org/2001/XMLSchema#
       <td> [[!XMLSCHEMA11-1]]
-  <tbody>
     <tr>
       <td> <code>as
       <td> <samp>https://www.w3.org/ns/activitystreams#
