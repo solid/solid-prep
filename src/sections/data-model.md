@@ -8,8 +8,8 @@ A [PREP] notification from an LDP Resource on a [=Solid server=] MUST have the f
 
 <dl>
 
-  <dt id="notification-property-id"><code>*id* &lt;rdfs:subject></code>
-  <dd> a unique identifier for a notification.
+  <dt id="notification-property-id"><code>*id*</code>
+  <dd> an absolute IRI (Internationalized Resource Identifier) that uniquely identifies the notification.
 
   <dt id="notification-property-type"><code>*as:type* &lt;as:Activity></code>
   <dd> the [[ACTIVITYSTREAMS-VOCABULARY#activity-types|type of activity]] that triggered the notification.
