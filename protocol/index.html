@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
   <link href="https://solid.github.io/solid-prep/protocol" rel="canonical">
   <link href="https://solidproject.org/favicon.ico" rel="icon">
-  <meta content="362d019483de7e0535b0f03d2afe8a622fb5f164" name="revision">
+  <meta content="0b131d0d07062b846c560bd5a0fff80725572e35" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -660,7 +660,7 @@ dfn > a.self-link::before      { content: "#"; }
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>Solid-PREP defines representation and semantics for notifications sent from LDP Resources hosted on Solid PODS using the Per Resource Events Protocol.</p>
+   <p>Solid-PREP defines representation and semantics for notifications sent from LDP Resources hosted on Solid servers using the Per Resource Events Protocol.</p>
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
@@ -767,15 +767,15 @@ appear in all capitals, as shown here.</p>
    </table>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><em>This section is non-normative.</em></p>
-   <p>Solid <a data-link-type="biblio" href="#biblio-solid-protocol" title="Solid Protocol">[SOLID-PROTOCOL]</a> uses linked data to interconnect data across decentralized data stores called PODS. <span class="super">Per Resource Events Protocol</span> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> allows servers to transmit notifications over HTTP that can be customized for any given resource. This specification defines representation and semantics for <span class="super-short">PREP</span> notifications sent from linked data resources hosted on Solid PODS.</p>
+   <p>Solid <a data-link-type="biblio" href="#biblio-solid-protocol" title="Solid Protocol">[SOLID-PROTOCOL]</a> uses linked data to interconnect data across decentralized data stores. <span class="super">Per Resource Events Protocol</span> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> allows servers to transmit notifications over HTTP that can be customized for any given resource. This specification defines representation and semantics for <span class="super-short">PREP</span> notifications sent from linked data resources hosted on Solid servers.</p>
    <h3 class="heading settled" data-level="1.1" id="intended-audience"><span class="secno">1.1. </span><span class="content">Audience</span><a class="self-link" href="#intended-audience"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>This specification is for:</p>
    <ul>
     <li data-md>
-     <p><a href="http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135">Server developers</a> who wish to enable clients to listen for updates to LDP Resources on Solid PODS.</p>
+     <p><a href="http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135">Server developers</a> who wish to enable clients to listen for updates to LDP Resources on Solid servers.</p>
     <li data-md>
-     <p><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who wish to implement a client to listen for updates to LDP Resources on Solid PODS.</p>
+     <p><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who wish to implement a client to listen for updates to LDP Resources on Solid servers.</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="request"><span class="secno">2. </span><span class="content">Request</span><a class="self-link" href="#request"></a></h2>
    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST accept <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#request">requests</a> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> when the <code>accept</code> <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#event-field">event-field</a> associated with the <code>PREP</code> list item in the <code><a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#accept-events">Accept-Events</a></code> header field indicates a preferred media type of <code>application/ld+json</code> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a>.</p>
