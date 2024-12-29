@@ -1,6 +1,6 @@
 # Solid-PREP
 
-Solid-PREP defines representation and semantics for notifications sent from [LDP Resources](https://www.w3.org/TR/ldp/#ldpr) hosted on **[Solid](https://solidproject.org) PODS** using the **[Per Resource Events](https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html)** Protocol.
+Solid-PREP defines representation and semantics for notifications sent from [LDP Resources](https://www.w3.org/TR/ldp/#ldpr) hosted on **[Solid](https://solidproject.org) servers** using the **[Per Resource Events](https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html)** Protocol.
 
 ## Protocol
 
