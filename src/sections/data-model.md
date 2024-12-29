@@ -8,13 +8,13 @@ A [PREP] notification from an LDP Resource on a [=Solid server=] MUST have the f
 
 <dl>
 
-  <dt id="notification-property-id"><code>*id* &lt;xs:string></code>
-  <dd> an opaque identifier for the notification. Can be used to set `Last-Event-ID` in a subsequent [PREP] notifications request.
+  <dt id="notification-property-id"><code>*id*</code>
+  <dd> an absolute IRI (Internationalized Resource Identifier) that uniquely identifies the notification.
 
-  <dt id="notification-property-type"><code>*type* &lt;as:Activity></code>
+  <dt id="notification-property-type"><code>*as:type* &lt;as:Activity></code>
   <dd> the [[ACTIVITYSTREAMS-VOCABULARY#activity-types|type of activity]] that triggered the notification.
 
-  <dt id="notification-property-published"><code>*published* &lt;xs:dateTime></code>
+  <dt id="notification-property-published"><code>*as:published* &lt;xs:dateTime></code>
   <dd> the date and time of the notification.
 
 </dl>
@@ -23,8 +23,8 @@ A [PREP] notification from an LDP Resource on a [=Solid server=] SHOULD have the
 
 <dl>
 
-  <dt id="notification-property-state"><code>*state* &lt;xs:string></code>
-  <dd> an opaque identifier for the last known state of the resource.
+  <dt id="notification-property-state"><code>*notify:state* &lt;xs:string></code>
+  <dd> an opaque identifier for the last known state of the resource. Can be used to set `Last-Event-ID` in a subsequent [PREP] notifications request.
 
 </dl>
 
