@@ -5,10 +5,10 @@
   <title>Solid-PREP</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 742f3d674, updated Mon Nov 4 14:56:54 2024 -0800" name="generator">
+  <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
   <link href="https://solid.github.io/solid-prep/protocol" rel="canonical">
   <link href="https://solidproject.org/favicon.ico" rel="icon">
-  <meta content="7aa4c3796eaad356bfa56463049d96341f9ce6ee" name="revision">
+  <meta content="362d019483de7e0535b0f03d2afe8a622fb5f164" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -637,7 +637,7 @@ dfn > a.self-link::before      { content: "#"; }
  <body class="h-entry">
   <div class="head">
    <h1 class="p-name no-ref" id="title">Solid-PREP</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-13">13 November 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-29">29 December 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -760,7 +760,6 @@ appear in all capitals, as shown here.</p>
       <td> <code>xs </code>
       <td> <samp>http://www.w3.org/2001/XMLSchema# </samp>
       <td> <a data-link-type="biblio" href="#biblio-xmlschema11-1" title="W3C XML Schema Definition Language (XSD) 1.1 Part 1: Structures">[XMLSCHEMA11-1]</a> 
-    <tbody>
      <tr>
       <td> <code>as </code>
       <td> <samp>https://www.w3.org/ns/activitystreams# </samp>
@@ -832,17 +831,17 @@ appear in all capitals, as shown here.</p>
    <h3 class="heading settled" data-level="5.1" id="notification-properties"><span class="secno">5.1. </span><span class="content">Properties</span><a class="self-link" href="#notification-properties"></a></h3>
    <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server⑨">Solid server</a> MUST have the following properties:</p>
    <dl>
-    <dt id="notification-property-id"><a class="self-link" href="#notification-property-id"></a><code><em>id</em> &lt;xs:string></code> 
-    <dd> an opaque identifier for the notification. Can be used to set <code>Last-Event-ID</code> in a subsequent <span class="super-short">PREP</span> notifications request. 
-    <dt id="notification-property-type"><a class="self-link" href="#notification-property-type"></a><code><em>type</em> &lt;as:Activity></code> 
+    <dt id="notification-property-id"><a class="self-link" href="#notification-property-id"></a><code><em>id</em></code> 
+    <dd> an absolute IRI (Internationalized Resource Identifier) that uniquely identifies the notification. 
+    <dt id="notification-property-type"><a class="self-link" href="#notification-property-type"></a><code><em>as:type</em> &lt;as:Activity></code> 
     <dd> the <a href="https://w3c.github.io/activitystreams/vocabulary/#activity-types">type of activity</a> that triggered the notification. 
-    <dt id="notification-property-published"><a class="self-link" href="#notification-property-published"></a><code><em>published</em> &lt;xs:dateTime></code> 
+    <dt id="notification-property-published"><a class="self-link" href="#notification-property-published"></a><code><em>as:published</em> &lt;xs:dateTime></code> 
     <dd> the date and time of the notification. 
    </dl>
    <p>A <span class="super-short">PREP</span> notification from an LDP Resource on a <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①⓪">Solid server</a> SHOULD have the following properties:</p>
    <dl>
-    <dt id="notification-property-state"><a class="self-link" href="#notification-property-state"></a><code><em>state</em> &lt;xs:string></code> 
-    <dd> an opaque identifier for the last known state of the resource. 
+    <dt id="notification-property-state"><a class="self-link" href="#notification-property-state"></a><code><em>notify:state</em> &lt;xs:string></code> 
+    <dd> an opaque identifier for the last known state of the resource. Can be used to set <code>Last-Event-ID</code> in a subsequent <span class="super-short">PREP</span> notifications request. 
    </dl>
    <h3 class="heading settled" data-level="5.2" id="extended-content"><span class="secno">5.2. </span><span class="content">Extended Content</span><a class="self-link" href="#extended-content"></a></h3>
    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①①">Solid server</a> MAY augment the <a href="https://w3c.github.io/json-ld-syntax/#the-context">JSON-LD Context</a> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> definition and extend the content of notifications.</p>
