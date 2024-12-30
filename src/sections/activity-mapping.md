@@ -1,17 +1,17 @@
 # Activity Mapping # {#activity-mapping}
 
-A [=Solid server=] sending a [PREP] notification as a result of some activity on an LDP Resource MUST set the [type](#notification-property-type) property as the [[ACTIVITYSTREAMS-VOCABULARY#activity-types|type of activity]] that triggered the notification as specified by the Activity Streams vocabulary [[ACTIVITYSTREAMS-VOCABULARY]].
+A [=Solid server=] sending a [PROTOCOL] notification as a result of some activity on a resource MUST set the [type](#notification-property-type) property as the [[ACTIVITYSTREAMS-VOCABULARY#activity-types|type of activity]] that triggered the notification as specified by the Activity Streams vocabulary [[ACTIVITYSTREAMS-VOCABULARY]].
 
 
 <div class="advisement">
   <div class="marker">Implementation Guidance</div>
 
-  When an LDP resource is modified by virtue of an HTTP request, the activity type ought to be set as follows:
+  When a resource is modified by virtue of an HTTP request, the activity type ought to be set as follows:
 
   1. When the [PREP] notification is triggered by a request on the resource with one of the following [[RFC9110#methods|HTTP methods]]:
 
     <table class="numbered">
-      <caption> Activity Mapping for LDP Resources
+      <caption> Activity Mapping for Resources
       <thead>
         <tr>
           <th> Request Method
