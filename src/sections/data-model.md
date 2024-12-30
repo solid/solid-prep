@@ -4,7 +4,7 @@ The core notification data is expressed with the Activity Streams [[ACTIVITYSTRE
 
 ## Properties ## {#notification-properties}
 
-A [PREP] notification from an LDP Resource on a [=Solid server=] MUST have the following properties:
+A [PROTOCOL] notification from an resource on a [=Solid server=] MUST have the following properties:
 
 <dl>
 
@@ -19,7 +19,7 @@ A [PREP] notification from an LDP Resource on a [=Solid server=] MUST have the f
 
 </dl>
 
-A [PREP] notification from an LDP Resource on a [=Solid server=] SHOULD have the following properties:
+A [PROTOCOL] notification from an resource on a [=Solid server=] SHOULD have the following properties:
 
 <dl>
 

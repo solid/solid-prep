@@ -1,6 +1,6 @@
 # Triggers # {#triggers}
 
-A [=Solid server=] implementing the [SUPER] on an LDP Resource SHOULD send a [PREP] notification when the state of the said resource is modified.
+A [=Solid server=] implementing the [PROTOCOL] on a resource SHOULD send a [PREP] notification when the state of the said resource is modified.
 
 A [=Solid server=] MUST NOT transmit a [PREP] notification before the resource has been modified and a confirmation (if necessary) has been sent to (but might not have been received by) the agent that initiated the resource modification.
 

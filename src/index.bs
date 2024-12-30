@@ -20,7 +20,7 @@ Editor: Rahul Gupta, https://cxres.pages.dev/profile/#i
 !Authors: <a href="https://cxres.pages.dev/profile/#i">Rahul Gupta</a>
 !Authors: <a href="https://elf-pavlik.hackers4peace.net">elf Pavlik</a>
 Abstract:
-  Solid-PREP defines representation and semantics for notifications sent from LDP Resources hosted on Solid servers using the Per Resource Events Protocol.
+  Solid-PREP defines representation and semantics for linked data based notifications sent from resources hosted on Solid servers using the Per Resource Events Protocol.
 
 Status Text:
   This section describes the status of this document at the time of its publication.
