@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
   <link href="https://solid.github.io/solid-prep/protocol" rel="canonical">
   <link href="https://solidproject.org/favicon.ico" rel="icon">
-  <meta content="0b131d0d07062b846c560bd5a0fff80725572e35" name="revision">
+  <meta content="b93076e821fc14ad38a992ba8649f6d918d71876" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -637,7 +637,7 @@ dfn > a.self-link::before      { content: "#"; }
  <body class="h-entry">
   <div class="head">
    <h1 class="p-name no-ref" id="title">Solid-PREP</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-29">29 December 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-30">30 December 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -688,7 +688,7 @@ dfn > a.self-link::before      { content: "#"; }
       <li><a href="#intended-audience"><span class="secno">1.1</span> <span class="content">Audience</span></a>
      </ol>
     <li><a href="#request"><span class="secno">2</span> <span class="content">Request</span></a>
-    <li><a href="#format"><span class="secno">3</span> <span class="content">Format</span></a>
+    <li><a href="#Response"><span class="secno">3</span> <span class="content">Response</span></a>
     <li><a href="#triggers"><span class="secno">4</span> <span class="content">Triggers</span></a>
     <li>
      <a href="#data-model"><span class="secno">5</span> <span class="content">Data Model</span></a>
@@ -778,9 +778,69 @@ appear in all capitals, as shown here.</p>
      <p><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who wish to implement a client to listen for updates to LDP Resources on Solid servers.</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="request"><span class="secno">2. </span><span class="content">Request</span><a class="self-link" href="#request"></a></h2>
-   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST accept <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#request">requests</a> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> when the <code>accept</code> <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#event-field">event-field</a> associated with the <code>PREP</code> list item in the <code><a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#accept-events">Accept-Events</a></code> header field indicates a preferred media type of <code>application/ld+json</code> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a>.</p>
-   <h2 class="heading settled" data-level="3" id="format"><span class="secno">3. </span><span class="content">Format</span><a class="self-link" href="#format"></a></h2>
+   <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server①">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST accept <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#request">requests</a> <a data-link-type="biblio" href="#biblio-prep" title="Per Resource Events">[PREP]</a> when the <code>accept</code> <a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#event-field">event-field</a> associated with the <code>"prep"</code> list item in the <code><a href="https://cxres.github.io/prep/draft-gupta-httpbis-per-resource-events.html#accept-events">Accept-Events</a></code> header field indicates a preferred media type of <code>application/ld+json</code> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a>.</p>
+   <div class="example" id="example-51004d3e">
+    <a class="self-link" href="#example-51004d3e"></a> <span class="marker">Request for Solid-PREP Notifications</span> 
+<pre class="include-code">GET /John_Doe HTTP/1.1
+Host: example.com
+Accept-Encoding: application/ld+json
+Accept-Events: "prep"; accept=application/ld+json
+</pre>
+   </div>
+   <h2 class="heading settled" data-level="3" id="Response"><span class="secno">3. </span><span class="content">Response</span><a class="self-link" href="#Response"></a></h2>
    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server②">Solid server</a> implementing <span class="super">Per Resource Events Protocol</span> on an LDP Resource MUST be able to transmit <span class="super-short">PREP</span> notifications using the <code>application/ld+json</code> <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> media type. It MAY also support other media types to transmit <span class="super-short">PREP</span> notifications.</p>
+   <div class="example" id="example-4f832688">
+    <a class="self-link" href="#example-4f832688"></a> <span class="marker">Response with Solid-PREP Notifications</span> 
+<pre class="include-code">HTTP/1.1 200 OK
+Accept: text/turtle, application/ld+json
+Accept-Events: "prep";accept=("message/rfc822" "application/ld+json")
+Events: protocol="prep", status=200, expires="Thu, 07 Nov 2024 15:13:48 GMT"
+Content-Type: multipart/mixed; boundary="main-boundary"
+
+--main-boundary
+Content-Type: application/ld+json
+
+{
+  "@context": "https://json-ld.org/contexts/person.jsonld",
+  "@id": "http://dbpedia.org/resource/John_Doe",
+  "name": "John Doe"
+}
+
+--main-boundary
+Content-Type: multipart/digest; boundary="notification-boundary"
+
+--notification-boundary
+Content-Type: application/ld+json
+
+{
+  "published": "2024-11-10T11:12:13Z",
+  "type": "Update",
+  "object": "https://example.com/John_Doe",
+  "state": "ABC123"
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://www.w3.org/ns/solid/notification/v1"
+  ]
+}
+
+--notification-boundary
+Content-Type: application/ld+json
+
+{
+  "published": "2024-11-10T14:15:16Z",
+  "type": "Delete",
+  "object": "https://example.com/John_Doe",
+  "state": "DEF456"
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://www.w3.org/ns/solid/notification/v1"
+  ]
+}
+
+--notification-boundary--
+--main-boundary--
+</pre>
+   </div>
    <h2 class="heading settled" data-level="4" id="triggers"><span class="secno">4. </span><span class="content">Triggers</span><a class="self-link" href="#triggers"></a></h2>
    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server③">Solid server</a> implementing the <span class="super">Per Resource Events Protocol</span> on an LDP Resource SHOULD send a <span class="super-short">PREP</span> notification when the state of the said resource is modified.</p>
    <p>A <a data-link-type="dfn" href="#solid-server" id="ref-for-solid-server④">Solid server</a> MUST NOT transmit a <span class="super-short">PREP</span> notification before the resource has been modified and a confirmation (if necessary) has been sent to (but might not have been received by) the agent that initiated the resource modification.</p>
@@ -1158,7 +1218,7 @@ function parseHTML(markup) {
 let dfnPanelData = {
 "Solid-client—Solid-server-interoperability": {"dfnID":"Solid-client\u2014Solid-server-interoperability","dfnText":"Solid Client\u2014Solid Server Interoperability","external":false,"refSections":[{"refs":[{"id":"ref-for-Solid-client\u2014Solid-server-interoperability"}],"title":"Interoperability"}],"url":"#Solid-client\u2014Solid-server-interoperability"},
 "solid-client": {"dfnID":"solid-client","dfnText":"Solid Client","external":false,"refSections":[{"refs":[{"id":"ref-for-solid-client"}],"title":"Interoperability"},{"refs":[{"id":"ref-for-solid-client\u2460"}],"title":"5.2. Extended Content"},{"refs":[{"id":"ref-for-solid-client\u2461"},{"id":"ref-for-solid-client\u2462"}],"title":"Security Considerations"}],"url":"#solid-client"},
-"solid-server": {"dfnID":"solid-server","dfnText":"Solid Server","external":false,"refSections":[{"refs":[{"id":"ref-for-solid-server"}],"title":"Interoperability"},{"refs":[{"id":"ref-for-solid-server\u2460"}],"title":"2. Request"},{"refs":[{"id":"ref-for-solid-server\u2461"}],"title":"3. Format"},{"refs":[{"id":"ref-for-solid-server\u2462"},{"id":"ref-for-solid-server\u2463"},{"id":"ref-for-solid-server\u2464"},{"id":"ref-for-solid-server\u2465"},{"id":"ref-for-solid-server\u2466"},{"id":"ref-for-solid-server\u2467"}],"title":"4. Triggers"},{"refs":[{"id":"ref-for-solid-server\u2468"},{"id":"ref-for-solid-server\u2460\u24ea"}],"title":"5.1. Properties"},{"refs":[{"id":"ref-for-solid-server\u2460\u2460"}],"title":"5.2. Extended Content"},{"refs":[{"id":"ref-for-solid-server\u2460\u2461"}],"title":"6. Activity Mapping"},{"refs":[{"id":"ref-for-solid-server\u2460\u2462"},{"id":"ref-for-solid-server\u2460\u2463"}],"title":"Security Considerations"}],"url":"#solid-server"},
+"solid-server": {"dfnID":"solid-server","dfnText":"Solid Server","external":false,"refSections":[{"refs":[{"id":"ref-for-solid-server"}],"title":"Interoperability"},{"refs":[{"id":"ref-for-solid-server\u2460"}],"title":"2. Request"},{"refs":[{"id":"ref-for-solid-server\u2461"}],"title":"3. Response"},{"refs":[{"id":"ref-for-solid-server\u2462"},{"id":"ref-for-solid-server\u2463"},{"id":"ref-for-solid-server\u2464"},{"id":"ref-for-solid-server\u2465"},{"id":"ref-for-solid-server\u2466"},{"id":"ref-for-solid-server\u2467"}],"title":"4. Triggers"},{"refs":[{"id":"ref-for-solid-server\u2468"},{"id":"ref-for-solid-server\u2460\u24ea"}],"title":"5.1. Properties"},{"refs":[{"id":"ref-for-solid-server\u2460\u2460"}],"title":"5.2. Extended Content"},{"refs":[{"id":"ref-for-solid-server\u2460\u2461"}],"title":"6. Activity Mapping"},{"refs":[{"id":"ref-for-solid-server\u2460\u2462"},{"id":"ref-for-solid-server\u2460\u2463"}],"title":"Security Considerations"}],"url":"#solid-server"},
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
