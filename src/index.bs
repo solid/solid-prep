@@ -116,7 +116,7 @@ Status Text:
 </pre>
 
 <pre class="include">
-  path: sections/format.md
+  path: sections/response.md
 </pre>
 
 <pre class="include">

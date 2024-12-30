@@ -1,0 +1,4 @@
+GET /John_Doe HTTP/1.1
+Host: example.com
+Accept-Encoding: application/ld+json
+Accept-Events: "prep"; accept=application/ld+json
