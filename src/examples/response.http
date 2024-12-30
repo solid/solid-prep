@@ -1,0 +1,48 @@
+HTTP/1.1 200 OK
+Accept: text/turtle, application/ld+json
+Accept-Events: "prep";accept=("message/rfc822" "application/ld+json")
+Events: protocol="prep", status=200, expires="Thu, 07 Nov 2024 15:13:48 GMT"
+Content-Type: multipart/mixed; boundary="main-boundary"
+
+--main-boundary
+Content-Type: application/ld+json
+
+{
+  "@context": "https://json-ld.org/contexts/person.jsonld",
+  "@id": "http://dbpedia.org/resource/John_Doe",
+  "name": "John Doe"
+}
+
+--main-boundary
+Content-Type: multipart/digest; boundary="notification-boundary"
+
+--notification-boundary
+Content-Type: application/ld+json
+
+{
+  "published": "2024-11-10T11:12:13Z",
+  "type": "Update",
+  "object": "https://example.com/John_Doe",
+  "state": "ABC123"
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://www.w3.org/ns/solid/notification/v1"
+  ]
+}
+
+--notification-boundary
+Content-Type: application/ld+json
+
+{
+  "published": "2024-11-10T14:15:16Z",
+  "type": "Delete",
+  "object": "https://example.com/John_Doe",
+  "state": "DEF456"
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://www.w3.org/ns/solid/notification/v1"
+  ]
+}
+
+--notification-boundary--
+--main-boundary--
